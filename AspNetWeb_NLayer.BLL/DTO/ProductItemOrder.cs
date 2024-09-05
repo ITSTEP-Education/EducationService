@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AspNetWeb_NLayer.BLL.DTO
 {
     public class ProductItemOrder
     {
-        public string name { get; set; } = null!;
-        public string typeEngeeniring { get; set; } = null!;
-        public int totalMonth { get; set; }
-        public float totalPrice { get; set; }
+        public string name { get; } = null!;
+        public string typeEngeeniring { get; } = null!;
+        public int timeStudy { get; }
+        public float sumPay { get; }
     }
 }
