@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspNetWeb_NLayer.BLL.Models
+namespace AspNetWeb_NLayer.BLL.DTO
 {
     public class ProductItemOrder
     {

@@ -1,44 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AspNetWeb_NLayer.BLL.Infrastructure;
 
 namespace AspNetWeb_NLayer.BLL.BussinesModels
 {
-    public class EducationForm
+    public class EducationTime : Dictionary<string, int>
     {
-        private Dictionary<string, int> educationTypes { get; set;  } = null!;
-        public Dictionary<string, int> EducationTypes
-        {
-            get => educationTypes = new Dictionary<string, int>() { { "frontend", 2 }, { "backend", 4 } };
-        }
+        public string engineerType { get; protected set; } = null!;
+        public string educationForm { get; protected set; } = null!;
 
-        private string educationTime = string.Empty;
-        public string EducationTime
-        {
-            get { if (educationTime.ToLower() != "daily" && educationTime.ToLower() != "holiday")
-                    return "no data";
-            return educationTime;
-            }
-        }
+        public EducationTime(string educationForm, string engineerType) : base(new Dictionary<string, int>(){ { "frontend", 2 }, { "backend", 4 } }) {
 
-        public string educationType { get; protected set; } = null!;
-        public EducationForm(string educationTime, string educationType) {
-
-            this.educationTime = educationTime.ToLower();
-            this.educationType = educationType.ToLower();
+            this.educationForm = educationForm.ToLower();
+            this.engineerType = engineerType.ToLower();
         }
 
         public int getTimeEducation(int timeDurationMonth)
         {
-            if (educationTime == "daily")
-            {
-                return timeDurationMonth;
-            }
+            if (educationForm != "daily" && educationForm != "holiday")
+                throw new ProductItemException("absent form education", educationForm);
 
-            if(educationTypes.Contains(educationType)) { 
-                return timeDurationMonth; 
+            if (educationForm == "daily") return timeDurationMonth;
+
+            if (this.ContainsKey(engineerType)) { 
+                return timeDurationMonth + this[engineerType]; 
+            }
+            else
+            {
+                throw new ProductItemException("absent engineer type", engineerType);
             }
         }
     }

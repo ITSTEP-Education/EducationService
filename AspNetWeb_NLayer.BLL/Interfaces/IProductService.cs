@@ -1,5 +1,4 @@
 ﻿using AspNetWeb_NLayer.BLL.DTO;
-using AspNetWeb_NLayer.BLL.Models;
 
 namespace AspNetWeb_NLayer.BLL.Interfaces
 {
