@@ -12,9 +12,7 @@ namespace AspNetWeb_NLayer.DAL.EF
     {
         public DbSet<ProductItem> productItems { get; set; } = null!;
 
-        public ProductContext(DbContextOptions<ProductContext> options) : base(options) {
-            //options.UseSqlServer(connection, b => b.MigrationsAssembly("AspNetWeb_Product"))
-        }
+        public ProductContext(DbContextOptions<ProductContext> options) : base(options) {  }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
