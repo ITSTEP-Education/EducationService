@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AspNetWeb_NLayer.BLL.BussinesModels
 {
-    public class PaymentProperty
+    public class EducationPayment
     {
+
     }
 }
