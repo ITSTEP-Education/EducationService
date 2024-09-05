@@ -20,3 +20,14 @@ Console.WriteLine("BLL is lunched");
 //Console.WriteLine(clp.PayPeriod);
 
 //Console.WriteLine(DiscountProperty.invitedPerson);
+
+//ClientPayProperty clp = new ClientPayProperty() { IsInvitedPerson = false, PayMethod = "Cash", PayPeriod = "_Yearly"};
+
+//try
+//{
+//    Console.WriteLine(new EducationPayment(clp).getSumPayment(100));
+//}
+//catch (ProductItemException ex)
+//{
+//    Console.WriteLine($"{ex.Message} - {ex.property}");
+//}
