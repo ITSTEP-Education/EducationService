@@ -2,15 +2,15 @@
 
 namespace AspNetWeb_NLayer.BLL.DTO
 {
-    public class PoductItemDto
+    public class ProductItemDto
     {
         public int id {  get; set; }
         public string name { get; set; } = null!;
         public string typeEngeeniring { get; set; } = null!;
 
-        public PoductItemDto() { }
+        public ProductItemDto() { }
 
-        public PoductItemDto(ProductItem productItem)
+        public ProductItemDto(ProductItem productItem)
         {
             this.id = productItem.id;
             this.name = productItem.name;
