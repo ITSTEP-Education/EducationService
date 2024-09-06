@@ -1,4 +1,5 @@
-﻿using AspNetWeb_NLayer.BLL.DTO;
+﻿using AspNetWeb_NLayer.BLL.BussinesModels;
+using AspNetWeb_NLayer.BLL.DTO;
 
 namespace AspNetWeb_NLayer.BLL.Interfaces
 {
@@ -8,7 +9,7 @@ namespace AspNetWeb_NLayer.BLL.Interfaces
 
         ProductItemDto getProductDto(string? name);
 
-        //ProductItemOrder getProductOrder(string? name);
+        ProductItemOrder getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps);
 
         void Dispose();
     }

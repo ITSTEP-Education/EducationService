@@ -4,28 +4,26 @@ namespace AspNetWeb_NLayer.BLL.BussinesModels
 {
     public class EducationTime : Dictionary<string, int>
     {
-        public string engineerType { get; protected set; } = null!;
-        public string educationForm { get; protected set; } = null!;
+        public ClientTimeProperty cltTimeProps { get; } = null!;
 
-        public EducationTime(string educationForm, string engineerType) : base(new Dictionary<string, int>(){ { "frontend", 2 }, { "backend", 4 } }) {
-
-            this.educationForm = educationForm.ToLower();
-            this.engineerType = engineerType.ToLower();
+        public EducationTime(ClientTimeProperty cltTimeProps) : base(new Dictionary<string, int>(){ { "front-end", 2 }, { "back-end", 4 } })
+        {
+            this.cltTimeProps = cltTimeProps;
         }
 
         public int getTimeEducation(int timeDurationMonth)
         {
-            if (educationForm != "daily" && educationForm != "holiday")
-                throw new ProductItemException("absent form education", educationForm);
+            if (cltTimeProps.EducationForm != "daily" && cltTimeProps.EducationForm != "holiday")
+                throw new ProductItemException("absent form education", cltTimeProps.EducationForm);
 
-            if (educationForm == "daily") return timeDurationMonth;
+            if (cltTimeProps.EducationForm == "daily") return timeDurationMonth;
 
-            if (this.ContainsKey(engineerType)) { 
-                return timeDurationMonth + this[engineerType]; 
+            if (this.ContainsKey(cltTimeProps.EngineerType)) { 
+                return timeDurationMonth + this[cltTimeProps.EngineerType]; 
             }
             else
             {
-                throw new ProductItemException("absent engineer type", engineerType);
+                throw new ProductItemException("absent engineer type", cltTimeProps.EngineerType);
             }
         }
     }
