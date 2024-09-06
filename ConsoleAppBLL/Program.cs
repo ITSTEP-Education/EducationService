@@ -1,33 +1,32 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AspNetWeb_NLayer.BLL.BussinesModels;
 using AspNetWeb_NLayer.BLL.Infrastructure;
+using AspNetWeb_NLayer.BLL.Services;
+using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Entities;
+using AspNetWeb_NLayer.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("BLL is lunched");
 
-//EducationTime edt = new EducationTime("holiday", "frontend");
+string dbConnection = "data source=DESKTOP-9C2MS1P\\SQLEXPRESS; Database=products; Trusted_Connection=TRUE; MultipleActiveResultSets=TRUE; TrustServerCertificate=True;";
+var optionsBuilder = new DbContextOptionsBuilder<ProductContext>();
+var options = optionsBuilder.UseSqlServer(dbConnection).Options;
 
-//try
-//{
-//    Console.WriteLine(edt.getTimeEducation(10));
-//}
-//catch (ProductItemException ex)
-//{
-//    Console.WriteLine($"{ex.Message} - {ex.property}");
-//}
+var productContext = new ProductContext(options);
+var products = productContext.productItems;
 
-//ClientPayProperty clp =  new ClientPayProperty() { IsInvitedPerson = false, PayMethod = "cash", PayPeriod = "yearly" };
-//Console.WriteLine(clp.PayPeriod);
+foreach (var product in products)
+{
+    Console.WriteLine(product.name);
+}
 
-//Console.WriteLine(DiscountProperty.invitedPerson);
-
-//ClientPayProperty clp = new ClientPayProperty() { IsInvitedPerson = false, PayMethod = "Cash", PayPeriod = "_Yearly"};
-
-//try
-//{
-//    Console.WriteLine(new EducationPayment(clp).getSumPayment(100));
-//}
-//catch (ProductItemException ex)
-//{
-//    Console.WriteLine($"{ex.Message} - {ex.property}");
-//}
+var ps = new ProductService(new UnitOfWork(productContext));
+try
+{
+    Console.WriteLine(ps.getProductDto("c++").typeEngeeniring);
+}
+catch (ProductItemException pex)
+{
+    Console.WriteLine($"{pex.Message} - {pex.property}");
+}

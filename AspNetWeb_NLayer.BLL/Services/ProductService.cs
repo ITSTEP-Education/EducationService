@@ -9,7 +9,7 @@ namespace AspNetWeb_NLayer.BLL.Services
 {
     public class ProductService :IProductService
     {
-        IUnitOfWork db = null!;
+        IUnitOfWork db;
 
         public ProductService(IUnitOfWork uow) 
         { 
@@ -23,10 +23,21 @@ namespace AspNetWeb_NLayer.BLL.Services
             var productItem = db.productItems.getItem(name);
             if (productItem == null) throw new ProductItemException("absent product in db", name);
 
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProductItem, ProductItemDto>()).CreateMapper();
+            return new ProductItemDto(productItem);
+        }
 
-            //return new ProductItemDto(productItem);
-            return mapper.Map<ProductItem, ProductItemDto>(productItem);
+        public IEnumerable<ProductItemDto> getAllProductsDto() 
+        {
+            var products = db.productItems.getAllItems();
+            if (products is null) throw new ProductItemException("absent table", "products");
+
+            IMapper mapper = new MapperConfiguration( c => c.CreateMap<ProductItem, ProductItemDto>()).CreateMapper();
+            return mapper.Map<IEnumerable<ProductItem>, IEnumerable<ProductItemDto>>(products);
+        }
+
+        public void Dispose()
+        {
+            db?.Dispose();
         }
     }
 }

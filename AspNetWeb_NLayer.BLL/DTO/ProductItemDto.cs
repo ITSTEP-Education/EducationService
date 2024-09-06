@@ -14,7 +14,8 @@ namespace AspNetWeb_NLayer.BLL.DTO
         {
             this.id = productItem.id;
             this.name = productItem.name;
-            this.typeEngeeniring = productItem.typeEngeeniring;
+            //this.typeEngeeniring = productItem.typeEngeeniring;
+            this.typeEngeeniring = productItem.description;
         }
     }
 }
