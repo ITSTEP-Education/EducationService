@@ -1,32 +1,40 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AspNetWeb_NLayer.BLL.BussinesModels;
-using AspNetWeb_NLayer.BLL.Infrastructure;
-using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
-using AspNetWeb_NLayer.DAL.Entities;
-using AspNetWeb_NLayer.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Graph.Models;
 
-Console.WriteLine("BLL is lunched");
-
-string dbConnection = "data source=DESKTOP-9C2MS1P\\SQLEXPRESS; Database=products; Trusted_Connection=TRUE; MultipleActiveResultSets=TRUE; TrustServerCertificate=True;";
-var optionsBuilder = new DbContextOptionsBuilder<ProductContext>();
-var options = optionsBuilder.UseSqlServer(dbConnection).Options;
-
-var productContext = new ProductContext(options);
-var products = productContext.productItems;
-
-foreach (var product in products)
+internal class Program
 {
-    Console.WriteLine(product.name);
-}
+    private static void Main(string[] args)
+    {
+        Console.WriteLine("BLL is lunched");
 
-var ps = new ProductService(new UnitOfWork(productContext));
-try
-{
-    Console.WriteLine(ps.getProductDto("c++").typeEngeeniring);
-}
-catch (ProductItemException pex)
-{
-    Console.WriteLine($"{pex.Message} - {pex.property}");
+        string DefaultDbConnection = "data source=DESKTOP-9C2MS1P\\SQLEXPRESS; Database=products; Trusted_Connection=TRUE; MultipleActiveResultSets=TRUE; TrustServerCertificate=True;";
+        //var options = new DbContextOptionsBuilder<ProductContext>().UseSqlServer(DefaultDbConnection).Options;
+
+        var services = new ServiceCollection();
+        services.AddDbContext<ProductContext>(options => options.UseSqlServer(DefaultDbConnection));
+
+        var serviceProvider = services.BuildServiceProvider();
+
+        //var productContext = new ProductContext(options);
+        //var products = productContext.productItems;
+
+        //foreach (var product in products)
+        //{
+        //    Console.WriteLine(product.name);
+        //}
+
+        //var ps = new ProductService(new UnitOfWork(productContext));
+        //try
+        //{
+        //    Console.WriteLine(ps.getProductDto("c++").typeEngeeniring);
+        //}
+        //catch (ProductItemException pex)
+        //{
+        //    Console.WriteLine($"{pex.Message} - {pex.property}");
+        //}
+    }
 }
