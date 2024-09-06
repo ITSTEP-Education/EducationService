@@ -8,7 +8,7 @@ namespace AspNetWeb_NLayer.DAL.EF
     {
         public void Configure(EntityTypeBuilder<ProductItem> builder)
         {
-            builder.ToTable("products").HasKey(c => c.id);
+            builder.ToTable("productitems").HasKey(c => c.id);
             builder.HasIndex(c => c.name).IsUnique();
         }
     }

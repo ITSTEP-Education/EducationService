@@ -1,10 +1,5 @@
 ﻿using AspNetWeb_NLayer.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace AspNetWeb_NLayer.DAL.EF
 {
@@ -12,7 +7,7 @@ namespace AspNetWeb_NLayer.DAL.EF
     {
         public DbSet<ProductItem> productItems { get; set; } = null!;
 
-        public ProductContext(DbContextOptions<ProductContext> options) : base(options) {  }
+        public ProductContext(DbContextOptions<ProductContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
