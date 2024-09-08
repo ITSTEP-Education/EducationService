@@ -19,11 +19,6 @@ internal class Program
         var productContext = new ProductContext(options);
         var products = productContext.productItems;
 
-        //foreach (var product in products)
-        //{
-        //    Console.WriteLine(product.name);
-        //}
-
         try
         {
             var ps = new ProductService(new UnitOfWork(productContext));

@@ -5,24 +5,23 @@ using AspNetWeb_NLayer.BLL.Infrastructure;
 using AutoMapper;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.BLL.BussinesModels;
+using AspNetWeb_NLayer.DAL.Repositories;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
     public class ProductService :IProductService
     {
-        public IUnitOfWork db;
+        public IUnitOfWork db { get; }
 
         public ProductService(IUnitOfWork uow) 
         { 
             db = uow;
         }
 
-        private ProductItem getProductItem(string? name)
+        public ProductItem getProductItem(string? name)
         {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-
             var productItem = db.productItems.getItem(name);
-            if (productItem == null) throw new ProductItemException("absent product in db", name);
+            if (productItem == null) throw new ProductItemException("absent product in db", name??"null");
 
             return productItem;
         }

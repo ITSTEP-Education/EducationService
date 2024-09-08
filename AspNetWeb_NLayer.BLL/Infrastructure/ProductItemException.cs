@@ -13,5 +13,8 @@ namespace AspNetWeb_NLayer.BLL.Infrastructure
         { 
             this.property = property;
         }
+
+        public ProductItemException(ProductItemException ex) : base(ex.Message) { this.property = ex.property; }
+
     }
 }

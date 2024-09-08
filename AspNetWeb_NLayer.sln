@@ -7,12 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_NLayer.DAL", "Asp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_NLayer.BLL", "AspNetWeb_NLayer.BLL\AspNetWeb_NLayer.BLL.csproj", "{E388864F-9A96-4A6D-A18A-5D94F6EA3650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppBLL", "ConsoleAppBLL\ConsoleAppBLL.csproj", "{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppBLL", "ConsoleAppBLL\ConsoleAppBLL.csproj", "{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.AspNet_Product", "WebApp.AspNet_Product\WebApp.AspNet_Product.csproj", "{417B371E-DBF7-4FDE-8AFF-D51211C08014}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetWeb_NLayer.DAL", "AspNetWeb_NLayer.DAL\AspNetWeb_NLayer.DAL.csproj", "{2C4346FB-E084-41DC-A19B-117E474315ED}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetWeb_Product", "AspNetWeb_Product\AspNetWeb_Product.csproj", "{AADA182F-EEB4-4E0D-9785-E5B1420FE592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_Product", "AspNetWeb_Product\AspNetWeb_Product.csproj", "{AADA182F-EEB4-4E0D-9785-E5B1420FE592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +26,8 @@ Global
 		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A6E9B13-F63A-499E-AA3D-BB34E4D657A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{417B371E-DBF7-4FDE-8AFF-D51211C08014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{417B371E-DBF7-4FDE-8AFF-D51211C08014}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{417B371E-DBF7-4FDE-8AFF-D51211C08014}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Release|Any CPU.ActiveCfg = Release|Any CPU

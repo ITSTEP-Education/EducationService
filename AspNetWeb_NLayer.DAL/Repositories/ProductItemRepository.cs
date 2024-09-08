@@ -15,6 +15,11 @@ namespace AspNetWeb_NLayer.DAL.Repositories
 
         public IEnumerable<ProductItem> getAllItems() => context.productItems;
 
-        public ProductItem? getItem (string name) => context.productItems.FirstOrDefault(x => x.name.Equals(name.ToLower()));
+        public ProductItem? getItem(string? name)
+        {
+            if (name == null || name == string.Empty) throw new ArgumentNullException(nameof(name));
+
+            return context.productItems.FirstOrDefault(x => x.name.Equals(name.ToLower()));
+        }
     }
 }

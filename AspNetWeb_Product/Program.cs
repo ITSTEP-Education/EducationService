@@ -1,3 +1,5 @@
+using AspNetWeb_NLayer.BLL.Interfaces;
+using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
@@ -8,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ProductContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDbConnection")));
 builder.Services.AddControllers();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); ;
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
