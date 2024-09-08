@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppBLL", "ConsoleApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_Product", "AspNetWeb_Product\AspNetWeb_Product.csproj", "{AADA182F-EEB4-4E0D-9785-E5B1420FE592}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactapp_productitem", "reactapp_productitem\reactapp_productitem.esproj", "{5916462D-D376-49EF-ADCC-AE2A9284EE34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,12 @@ Global
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5916462D-D376-49EF-ADCC-AE2A9284EE34}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

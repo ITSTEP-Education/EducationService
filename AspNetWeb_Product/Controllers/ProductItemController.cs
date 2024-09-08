@@ -82,5 +82,11 @@ namespace AspNetWeb_Product.Controllers
                 return BadRequest(new ProductItemException(ex));
             }
         }
+
+        [HttpGet("check", Name = "GetReponce")]
+        public ActionResult<string> getResponce()
+        {
+            return Ok("ProductItem");
+        }
     }
 }
