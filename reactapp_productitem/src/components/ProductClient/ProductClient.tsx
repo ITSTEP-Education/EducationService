@@ -23,7 +23,7 @@ const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement
       e.preventDefault();
 
       const productsDbo = axios.create({
-         baseURL: 'https://localhost:7296/api/ProductItem/',
+         baseURL: 'https://localhost:7296/api/ProductItem',
          method: 'get',
          responseType: 'json',
       });
