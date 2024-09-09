@@ -7,29 +7,43 @@ import axios from 'axios';
 
 interface ProductClientProps {}
 
-const ProductClient: FC<ProductClientProps> = () => {
+export interface IProductItemDto{
+   id: number,
+   name: string,
+   typeEngeeniring: string,
+}
 
-   const handleBtnLoad = (): void => {
+const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement<ProductClientProps> => {
+
+   const [productsItemDbo, setProductsItemDbo] = useState<Array<IProductItemDto | null>>([]);
+   const [isTable1, setIsTable1] = useState(false);
+
+   const handleBtnLoad = (e: React.FormEvent<HTMLElement>): void => {
+
+      e.preventDefault();
 
       const productsDbo = axios.create({
          baseURL: 'https://localhost:7296/api/ProductItem/',
          method: 'get',
          responseType: 'json',
       });
-   
-      console.log('reqeust btn load');
-      
-      productsDbo.get('check').
+       
+      productsDbo.get('all-productitems-dto').
       then((responce) => {
-         console.log('responce:', responce.data);
+
+         setProductsItemDbo(responce.data);
+         for(let product of productsItemDbo){
+            console.log(product);
+         }
+
+         setIsTable1(true);
       }).
       catch((error) => {
          console.log('error:', error)
       });
    }
 
-
-   useEffect(() => {handleBtnLoad}, []);
+   useEffect(() => {handleBtnLoad}, [productsItemDbo]);
 
    return (
       <ProductClientWrapper>
@@ -38,7 +52,7 @@ const ProductClient: FC<ProductClientProps> = () => {
               <TitleWrapper>Table 1. ProductItem (DTO)</TitleWrapper>
               <BtnWrapper onClick={handleBtnLoad}>LOAD</BtnWrapper>
            </Display>
-           <TabProductItemDbo/>
+           {isTable1? <TabProductItemDbo productsDto={productsItemDbo}/> : <></>}
         </div>
       </ProductClientWrapper>
      );

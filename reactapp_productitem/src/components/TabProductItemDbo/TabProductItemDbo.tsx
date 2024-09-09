@@ -1,18 +1,40 @@
-import React, { FC } from 'react';
+import React, { FC, ReactHTMLElement, ReactNode, useEffect, useState } from 'react';
 import { TableWrapper } from './TabProductItemDbo.styled';
 import './TabProductItemDbo.css'
+import { IProductItemDto } from '../ProductClient/ProductClient';
 
-interface TabProductItemDboProps {}
+interface ProductsItemDto {
+   productsDto: Array<IProductItemDto | null>
+}
 
-const TabProductItemDbo: FC<TabProductItemDboProps> = () => {
+const Product = (product: IProductItemDto | null ): React.ReactElement => {
 
-   const rowData: React.ReactElement = 
-   <tr>
-      <td>1</td>
-      <td>c#</td>
-      <td>back-end</td>
-   </tr>
+   const handleRow = (e: React.FormEvent<HTMLElement>): void => {
+      e.preventDefault();
+      console.log(e.currentTarget.getElementsByTagName('td')[1].textContent);
+   }
+''
+   return (
+      <tr onClick={handleRow}>
+         <td>{product?.id}</td>
+         <td>{product?.name}</td>
+         <td>{product?.typeEngeeniring}</td>
+      </tr>
+   )
+}
 
+const TabProductItemDbo: FC<ProductsItemDto> = (props) => {
+
+   const [productsDto, setProductsDto] = useState<Array<IProductItemDto | null>>([]);
+
+   useEffect(() => {
+      setProductsDto(props.productsDto);
+   }, [props.productsDto]);
+
+   let rowProducts = [];
+   for(const product of productsDto){
+      rowProducts.push(Product(product));
+   }
 
    return (
       <TableWrapper id='tab-dbo'>
@@ -21,7 +43,7 @@ const TabProductItemDbo: FC<TabProductItemDboProps> = () => {
            <th>Name</th>
            <th>Engineering</th>
          </tr>
-         {rowData}
+         {rowProducts}
       </TableWrapper>
      );
 }
