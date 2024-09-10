@@ -1,5 +1,4 @@
-﻿using AspNetWeb_NLayer.BLL.BussinesModels;
-using AspNetWeb_NLayer.BLL.DTO;
+﻿using AspNetWeb_NLayer.BLL.DTO;
 using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
@@ -51,6 +50,8 @@ namespace AspNetWeb_Product.Controllers
         [HttpGet("productitem", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
         {
+            logger.LogWarning(3001, "AspNetWeb_Product.Controllers.\nLogWarning HttpGet GetProductItem by {name}.\n{HttpContext.Request.Path}", name, HttpContext.Request.Path);
+
             try
             {
                 return Ok(productServ.getProductItem(name));

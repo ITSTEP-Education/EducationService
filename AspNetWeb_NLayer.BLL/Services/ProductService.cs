@@ -6,20 +6,25 @@ using AutoMapper;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.BLL.BussinesModels;
 using AspNetWeb_NLayer.DAL.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
     public class ProductService :IProductService
     {
         public IUnitOfWork db { get; }
+        public ILogger<ProductItemRepository> logger;
 
         public ProductService(IUnitOfWork uow) 
         { 
             db = uow;
+            logger = uow.logger;
         }
 
         public ProductItem getProductItem(string? name)
         {
+            logger.LogWarning(2001, "AspNetWeb_NLayer.BLL.Services.\nLogWarning HttpGet GetProductItem by {name}", name);
+
             var productItem = db.productItems.getItem(name);
             if (productItem == null) throw new ProductItemException("absent product in db", name??"null");
 

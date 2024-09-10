@@ -1,25 +1,28 @@
 ﻿using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.DAL.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetWeb_NLayer.DAL.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
+        public ILogger<ProductItemRepository> logger {  get; }
         private ProductContext context;
         private ProductItemRepository productItemRepository = null!;
         private bool disposed = false;
 
-        public UnitOfWork(ProductContext context)
+        public UnitOfWork(ProductContext context, ILogger<ProductItemRepository> logger)
         {
             this.context = context;
+            this.logger = logger;
         }
 
         public IRepository<ProductItem> productItems
         {
             get { 
                 if (productItemRepository == null)
-                    productItemRepository = new ProductItemRepository(context);
+                    productItemRepository = new ProductItemRepository(context, logger);
                 return productItemRepository;
             }
         }
