@@ -4,8 +4,19 @@ using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+
+// Add loges' services.
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddSerilog(logger);
 
 // Add services to the container.
 builder.Services.AddDbContext<ProductContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDbConnection")));
