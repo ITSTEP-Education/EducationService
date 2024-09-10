@@ -23,7 +23,7 @@ namespace AspNetWeb_NLayer.BLL.Services
 
         public ProductItem getProductItem(string? name)
         {
-            logger.LogWarning(2001, "AspNetWeb_NLayer.BLL.Services.\nLogWarning HttpGet GetProductItem by {name}", name);
+            logger.LogError(2001, "AspNetWeb_NLayer.BLL.Services.\nLogWarning HttpGet GetProductItem by {name}", name);
 
             var productItem = db.productItems.getItem(name);
             if (productItem == null) throw new ProductItemException("absent product in db", name??"null");

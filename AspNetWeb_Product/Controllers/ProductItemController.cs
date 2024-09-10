@@ -50,7 +50,7 @@ namespace AspNetWeb_Product.Controllers
         [HttpGet("productitem", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
         {
-            logger.LogWarning(3001, "AspNetWeb_Product.Controllers.\nLogWarning HttpGet GetProductItem by {name}.\n{HttpContext.Request.Path}", name, HttpContext.Request.Path);
+            logger.LogError(3001, "AspNetWeb_Product.Controllers.\nLogWarning HttpGet GetProductItem by {name}.\n{HttpContext.Request.Path}", name, HttpContext.Request.Path);
 
             try
             {
