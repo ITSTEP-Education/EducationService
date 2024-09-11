@@ -20,7 +20,7 @@ namespace AspNetWeb_NLayer.DAL.Repositories
 
         public ProductItem? getItem(string? name)
         {
-            logger.LogError(1001, "AspNetWeb_NLayer.DAL.Repositories.\nLogWarning HttpGet GetProductItem by {name}", name);
+            //logger.LogError(1001, "AspNetWeb_NLayer.DAL.Repositories.\nLogWarning HttpGet GetProductItem by {name}", name);
 
             if (name == null || name == string.Empty) throw new ArgumentNullException(nameof(name));
 

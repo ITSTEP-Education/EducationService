@@ -17,6 +17,7 @@ var logger = new LoggerConfiguration()
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddSerilog(logger);
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
 builder.Services.AddDbContext<ProductContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDbConnection")));

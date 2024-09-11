@@ -49,9 +49,7 @@ namespace AspNetWeb_Product.Controllers
 
         [HttpGet("productitem", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
-        {
-            logger.LogError(3001, "AspNetWeb_Product.Controllers.\nLogWarning HttpGet GetProductItem by {name}.\n{HttpContext.Request.Path}", name, HttpContext.Request.Path);
-
+        {      
             try
             {
                 return Ok(productServ.getProductItem(name));
@@ -62,6 +60,7 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
+                logger.LogError(3001, "HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
                 return BadRequest(new ProductItemException(ex));
             }
         }
