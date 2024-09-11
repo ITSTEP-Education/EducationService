@@ -4,6 +4,8 @@ using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Data.Common;
 
 namespace AspNetWeb_Product.Controllers
@@ -60,7 +62,7 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
-                logger.LogError(3001, "HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
+                logger.LogError(301, new ProductItemException(ex), "HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
                 return BadRequest(new ProductItemException(ex));
             }
         }
