@@ -15,7 +15,7 @@ var logger = new LoggerConfiguration()
 
 // Add loges' services.
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+//builder.Logging.AddConsole();
 builder.Logging.AddSerilog(logger);
 builder.Services.AddHttpContextAccessor();
 

@@ -51,9 +51,12 @@ namespace AspNetWeb_Product.Controllers
 
         [HttpGet("productitem", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
-        {      
+        {
+            bool isExcept = false;
+
             try
             {
+                logger.LogInformation(304, "started HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
                 return Ok(productServ.getProductItem(name));
             }
             catch (ArgumentNullException ex)
@@ -62,8 +65,14 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
-                logger.LogError(301, new ProductItemException(ex), "HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
+                isExcept = true;
+                logger.LogError(304, new ProductItemException(ex), "failed HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
                 return BadRequest(new ProductItemException(ex));
+            }
+            finally
+            {
+                if (!isExcept)
+                    logger.LogInformation(304, "closed HttpGet GetProductItem by {@Name}. Url: {@RequestPath}", name, HttpContext.Request.Path);
             }
         }
 
