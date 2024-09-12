@@ -3,6 +3,7 @@ using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
+using AspNetWeb_Product.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -37,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
 
 app.UseHttpsRedirection();
 
