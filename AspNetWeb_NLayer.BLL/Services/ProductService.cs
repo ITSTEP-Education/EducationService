@@ -13,12 +13,12 @@ namespace AspNetWeb_NLayer.BLL.Services
     public class ProductService :IProductService
     {
         public IUnitOfWork db { get; }
-        public ILogger<ProductItemRepository> logger;
+        public ILogger<ProductService> logger;
 
-        public ProductService(IUnitOfWork uow) 
+        public ProductService(IUnitOfWork uow, ILogger<ProductService> logger) 
         { 
             db = uow;
-            logger = uow.logger;
+            this.logger = logger;
         }
 
         public ProductItem getProductItem(string? name)
@@ -59,8 +59,8 @@ namespace AspNetWeb_NLayer.BLL.Services
 
             cltTimeProps.EngineerType = productItem.typeEngeeniring;
 
-            productOrder.timeStudy = new EducationTime(cltTimeProps).getTimeEducation(productItem.durationMonth);
-            productOrder.sumPay = new EducationPayment(cltPayProps).getSumPayment(productItem.price);
+            productOrder.timeStudy = new EducationTime(cltTimeProps, this.logger).getTimeEducation(productItem.durationMonth);
+            productOrder.sumPay = new EducationPayment(cltPayProps, this.logger).getSumPayment(productItem.price);
 
             return productOrder;
         }

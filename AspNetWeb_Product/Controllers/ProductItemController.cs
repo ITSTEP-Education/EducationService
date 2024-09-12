@@ -42,20 +42,9 @@ namespace AspNetWeb_Product.Controllers
         }
 
         [HttpGet("productorder", Name = "GetProductOrder")]
-        public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, [FromBody] ClientProperty clientProps)
+        public ActionResult<ProductItemOrder> getProductOrder([FromQuery] string name, [FromBody] ClientProperty clientProps)
         {
-            try
-            {
-                return Ok(productServ.getProductOrder(name, clientProps.cltTimeProps, clientProps.cltPayProps));
-            }
-            catch (ArgumentNullException ex)
-            {
-                return BadRequest(ex);
-            }
-            catch (ProductItemException ex) 
-            {
-                return BadRequest(new ProductItemException(ex));
-            }
+            return Ok(productServ.getProductOrder(name, clientProps.cltTimeProps, clientProps.cltPayProps));
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using AspNetWeb_NLayer.BLL.Infrastructure;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Newtonsoft.Json;
-using System.Net;
 
 namespace AspNetWeb_Product.Middleware
 {
