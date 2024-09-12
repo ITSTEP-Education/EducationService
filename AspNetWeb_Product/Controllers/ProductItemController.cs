@@ -26,27 +26,13 @@ namespace AspNetWeb_Product.Controllers
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
         {
-            try
-            {
-                return Ok(productServ.getAllProductsDto());
-            }
-            catch (ProductItemException ex)
-            {
-                return BadRequest(new { msg = ex.Message, prop = ex.property });
-            }
+            return Ok(productServ.getAllProductsDto());
         }
 
         [HttpGet("all-productitems", Name = "GetAllItems")]
         public ActionResult<IEnumerable<ProductItem>> getAllItems() 
         {
-            try
-            {
-                return Ok(productServ.db.productItems.getAllItems());
-            }
-            catch ( DbException ex)
-            {
-                return BadRequest(new {msg = ex.Message, prop = ex.SqlState});
-            }
+            return Ok(productServ.db.productItems.getAllItems());
         }
 
         [HttpGet("productitem", Name = "GetProductItem")]
@@ -56,8 +42,7 @@ namespace AspNetWeb_Product.Controllers
         }
 
         [HttpGet("productorder", Name = "GetProductOrder")]
-        public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, 
-            [FromBody] ClientProperty clientProps)
+        public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, [FromBody] ClientProperty clientProps)
         {
             try
             {

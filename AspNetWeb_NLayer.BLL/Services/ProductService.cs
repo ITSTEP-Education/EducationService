@@ -40,7 +40,11 @@ namespace AspNetWeb_NLayer.BLL.Services
         public IEnumerable<ProductItemDto> getAllProductsDto() 
         {
             var products = db.productItems.getAllItems();
-            if (products is null) throw new ProductItemException(3002, "absent table", "products");
+            if (products is null)
+            {
+                logger.LogError(2002, "BLL: failed getAllProductsDto() ");
+                throw new ProductItemException(3002, "absent table", "products");
+            }
 
             IMapper mapper = new MapperConfiguration( c => c.CreateMap<ProductItem, ProductItemDto>()).CreateMapper();
             return mapper.Map<IEnumerable<ProductItem>, IEnumerable<ProductItemDto>>(products);
@@ -54,6 +58,7 @@ namespace AspNetWeb_NLayer.BLL.Services
             var productOrder = mapper.Map<ProductItem, ProductItemOrder>(productItem);
 
             cltTimeProps.EngineerType = productItem.typeEngeeniring;
+
             productOrder.timeStudy = new EducationTime(cltTimeProps).getTimeEducation(productItem.durationMonth);
             productOrder.sumPay = new EducationPayment(cltPayProps).getSumPayment(productItem.price);
 
