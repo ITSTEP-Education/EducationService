@@ -12,6 +12,9 @@ VALUES
 ('html', 'none', 'front-end', '4', '500' ),
 ('css', 'none', 'front-end', '4', '500' );
 
+SELECT * FROM [dbo].[productitemlog];
+TRUNCATE TABLE [dbo].[productitemlog];
+
 --TRUNCATE TABLE [dbo].[productitems];
 --DROP TABLE [dbo].[productitems];
 
