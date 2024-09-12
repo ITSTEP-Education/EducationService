@@ -19,10 +19,12 @@ namespace AspNetWeb_NLayer.DAL.Repositories
         public IEnumerable<ProductItem> getAllItems() => context.productItems;
 
         public ProductItem? getItem(string? name)
-        {
-            //logger.LogError(1001, "AspNetWeb_NLayer.DAL.Repositories.\nLogWarning HttpGet GetProductItem by {name}", name);
-
-            if (name == null || name == string.Empty) throw new ArgumentNullException(nameof(name));
+        {           
+            if (name == null || name == string.Empty)
+            {
+                logger.LogError(1001, "DAL: failed getItem({@name})", name);
+                throw new Exception($"empty parameter: name = {name}");
+            }
 
             return context.productItems.FirstOrDefault(x => x.name.Equals(name.ToLower()));
         }

@@ -23,10 +23,14 @@ namespace AspNetWeb_NLayer.BLL.Services
 
         public ProductItem getProductItem(string? name)
         {
-            //logger.LogError(2001, "AspNetWeb_NLayer.BLL.Services.\nLogWarning HttpGet GetProductItem by {name}", name);
+            
 
             var productItem = db.productItems.getItem(name);
-            if (productItem == null) throw new ProductItemException("absent product in db", name??"null");
+            if (productItem == null)
+            {
+                logger.LogError(2001, "BLL: failed getProductItem({@name})", name);
+                throw new ProductItemException(3001, "absent product in db", name ?? "null");
+            }
 
             return productItem;
         }
@@ -36,7 +40,7 @@ namespace AspNetWeb_NLayer.BLL.Services
         public IEnumerable<ProductItemDto> getAllProductsDto() 
         {
             var products = db.productItems.getAllItems();
-            if (products is null) throw new ProductItemException("absent table", "products");
+            if (products is null) throw new ProductItemException(3002, "absent table", "products");
 
             IMapper mapper = new MapperConfiguration( c => c.CreateMap<ProductItem, ProductItemDto>()).CreateMapper();
             return mapper.Map<IEnumerable<ProductItem>, IEnumerable<ProductItemDto>>(products);

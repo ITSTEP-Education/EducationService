@@ -14,7 +14,7 @@ namespace AspNetWeb_NLayer.BLL.BussinesModels
         public int getTimeEducation(int timeDurationMonth)
         {
             if (cltTimeProps.EducationForm != "daily" && cltTimeProps.EducationForm != "holiday")
-                throw new ProductItemException("absent form education", cltTimeProps.EducationForm);
+                throw new ProductItemException(3005, "absent form education", cltTimeProps.EducationForm);
 
             if (cltTimeProps.EducationForm == "daily") return timeDurationMonth;
 
@@ -23,7 +23,7 @@ namespace AspNetWeb_NLayer.BLL.BussinesModels
             }
             else
             {
-                throw new ProductItemException("absent engineer type", cltTimeProps.EngineerType);
+                throw new ProductItemException(3006, "absent engineer type", cltTimeProps.EngineerType);
             }
         }
     }

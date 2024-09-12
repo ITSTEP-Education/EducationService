@@ -14,7 +14,7 @@ var logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
   .CreateLogger();
 
-// Add loges' services.
+// Add loges' services
 builder.Logging.ClearProviders();
 //builder.Logging.AddConsole();
 builder.Logging.AddSerilog(logger);
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
