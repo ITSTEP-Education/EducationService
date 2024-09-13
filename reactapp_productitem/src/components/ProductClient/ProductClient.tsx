@@ -3,6 +3,7 @@ import { ProductClientWrapper } from './ProductClient.styled';
 import { TitleWrapper, BtnWrapper } from '../styles/ProductItem.styled';
 import TabProductItemDto from '../ProductItemDto/TabProductItemDto';
 import ProductItemRecord from '../ProductClientSections/ProductItemRecord';
+import OptionsEducation from '../ProductClientSections/OptionsEducation';
 import { Display } from '../styles/General.styled';
 
 
@@ -36,6 +37,10 @@ const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement
 
          <ProductItemRecord _nameProduct={nameProduct}/>
 
+         <div style={{width: '500px', display: 'block', textAlign:'center'}}>
+            <TitleWrapper style={{backgroundColor: '#6992b8'}}>PRODUCT OPTIONS</TitleWrapper>
+            <OptionsEducation/>
+         </div>
       </ProductClientWrapper>
      );
 }
