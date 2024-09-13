@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 import { TableWrapper } from '../ProductItemDto/TabProductItemDto.styled';
-import '../ProductItemDto/TabProductItemDto.css'
+import '../ProductItemDto/TabProductItemDto.css';
+import { dictNameToRoute } from './ProductItemData';
 
 type NameProductItem = {
     nameProduct: string | null
 }
 
-type ProductItem = {
+type ProductItemProps = {
     id: number,
     name: string,
     description: string,
@@ -16,7 +17,7 @@ type ProductItem = {
     price: number
 }
 
-const recordProductItem = (product: ProductItem | null): React.ReactElement => (
+const recordProductItem = (product: ProductItemProps | null): React.ReactElement => (
     <tr>
         <td>{product?.id}</td>
         <td>{product?.name}</td>
@@ -27,9 +28,9 @@ const recordProductItem = (product: ProductItem | null): React.ReactElement => (
     </tr>
 );
 
-const RecordProductItem: FC<NameProductItem> = (props) => {
+const ProductItem: FC<NameProductItem> = (props) => {
 
-    const [productItem, setProductItem] = useState<ProductItem | null>(null);
+    const [productItem, setProductItem] = useState<ProductItemProps | null>(null);
 
     const productItemGet = axios.create({
         baseURL: 'https://localhost:7296/api/ProductItem',
@@ -37,11 +38,13 @@ const RecordProductItem: FC<NameProductItem> = (props) => {
         responseType: 'json',
     });
 
+    let queryName = dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct] == undefined ? props.nameProduct : dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct]
+
     useEffect(() => {
-        productItemGet.get(`productitem?name=${props.nameProduct}`)
+        productItemGet.get(`productitem?name=${queryName}`)
         .then((responce) => {
+            
             setProductItem(responce.data);
-            console.log(productItem);
         })
         .catch((error) => {
             console.log(error);
@@ -63,4 +66,4 @@ const RecordProductItem: FC<NameProductItem> = (props) => {
     );
 }
 
-export default RecordProductItem;
+export default ProductItem;

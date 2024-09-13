@@ -3,25 +3,20 @@ import axios from 'axios';
 import { TableWrapper } from './TabProductItemDto.styled';
 import './TabProductItemDto.css'
 
+interface ITabProductItemDto {
+   isTableLoad: boolean | false,
+   _handleNameProduct: (e: React.FormEvent<HTMLElement>) => void,
+}
+
 interface IProductItemDto{
    id: number,
    name: string,
    typeEngeeniring: string,
 }
 
-interface ITable {
-   isTableLoad: boolean | false,
-}
-
-const Product = (product: IProductItemDto | null ): React.ReactElement => {
-
-   const handleRowGetName = (e: React.FormEvent<HTMLElement>): void => {
-      e.preventDefault();
-      console.log(e.currentTarget.getElementsByTagName('td')[1].textContent);
-   }
-
+const Product = (product: IProductItemDto | null,  handleNameProduct: (e: React.FormEvent<HTMLElement>) => void): React.ReactElement => {
    return (
-      <tr onClick={handleRowGetName}>
+      <tr onClick={handleNameProduct}>
          <td>{product?.id}</td>
          <td>{product?.name}</td>
          <td>{product?.typeEngeeniring}</td>
@@ -29,7 +24,7 @@ const Product = (product: IProductItemDto | null ): React.ReactElement => {
    )
 }
 
-const TabProductItemDto: FC<ITable> = (props) => {
+const TabProductItemDto: FC<ITabProductItemDto> = (props) => {
 
    if (!props.isTableLoad) return;
 
@@ -57,7 +52,7 @@ const TabProductItemDto: FC<ITable> = (props) => {
 
    let rowProducts = [];
    for(const product of productsItemDto){
-      rowProducts.push(Product(product));
+      rowProducts.push(Product(product, props._handleNameProduct));
    }
 
    return (
