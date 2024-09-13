@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const OptionsEducationTimeWrap = styled.div`
+export const OptionsEducationWrap = styled.div`
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    border-top: 1px solid #ddd;
 `;
