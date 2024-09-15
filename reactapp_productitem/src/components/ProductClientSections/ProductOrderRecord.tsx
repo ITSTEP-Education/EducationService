@@ -55,7 +55,7 @@ const ProductOrderRecord: FC<IProductOrderRecord> = (props) => {
         <div style={{width: `${props._width || 500}px`}}>
             <Display _justify='none'>
                 <TitleWrapper style={{width:'450px', textAlign: 'center'}}>ORDER DETAILS</TitleWrapper>
-                <BtnWrapper onClick={handleProductOrder} >SHOW</BtnWrapper>
+                <BtnWrapper onClick={handleProductOrder} disabled={true}>SHOW</BtnWrapper>
             </Display>
             <ProductOrder _productOrder={productOrder}/>
         </div>

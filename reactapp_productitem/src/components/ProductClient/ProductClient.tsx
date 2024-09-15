@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { ProductClientWrapper } from './ProductClient.styled';
 import { TitleWrapper, BtnWrapper } from '../styles/ProductItem.styled';
 import TabProductItemDto from '../ProductItemDto/TabProductItemDto';
