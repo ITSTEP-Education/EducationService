@@ -3,6 +3,7 @@ import { ProductClientWrapper } from './ProductClient.styled';
 import { TitleWrapper, BtnWrapper } from '../styles/ProductItem.styled';
 import TabProductItemDto from '../ProductItemDto/TabProductItemDto';
 import ProductItemRecord from '../ProductClientSections/ProductItemRecord';
+import ProductOrderRecord from '../ProductClientSections/ProductOrderRecord';
 import OptionsEducation from '../ProductClientSections/OptionsEducation';
 import OptionsInvited from '../ProductClientSections/OptionsInvited';
 import { Display, BlockSpace } from '../styles/General.styled';
@@ -11,7 +12,7 @@ import { optionsForm, optionsPayMethod, optionsPayPeriod } from '../ProductItem/
 
 interface ProductClientProps {}
 
-type TClientProperty = {
+export type TClientProperty = {
    cltTimeProps: {
       educationForm: string,
       engineerType: string,
@@ -112,6 +113,7 @@ const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement
 
    return (
       <ProductClientWrapper>
+
          <div style={{width:'335px'}}>
             <Display _justify='none'>
                <TitleWrapper>EDUCATION SUBJECTS</TitleWrapper>
@@ -119,22 +121,22 @@ const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement
             </Display>
             <TabProductItemDto isTableLoad={isTableLoad} _handleNameProduct={handleNameProduct} _handleEngineerType={handleEngineerType}/>
          </div>
+         <BlockSpace/>
          <ProductItemRecord _nameProduct={nameProduct} _handleBtnSetUp={handleBtnSetUp}/>
 
          <div style={{width:'500px', display: isOptions? 'block' : 'none', textAlign:'center'}}>
             <BlockSpace/>
             <TitleWrapper style={{backgroundColor: '#6992b8'}}>EDUCATION OPTIONS</TitleWrapper>
             <OptionsEducation mainName='FORM' optionNames={optionsForm} _handleEducationForm={handleEducationForm}/>
-            
-            <BlockSpace/>
-            <TitleWrapper style={{backgroundColor: '#e43414'}}>PAYMENT OPTIONS</TitleWrapper>
             <OptionsEducation mainName='METHOD' optionNames={optionsPayMethod} _handleEducationForm={handlePayMethod}/>
             <OptionsEducation mainName='PERIOD' optionNames={optionsPayPeriod} _handleEducationForm={handlePayPeriod}/>
 
             <BlockSpace/>
-            <TitleWrapper style={{backgroundColor: '#825bcc'}}>ADDITIONAL OPTIONS</TitleWrapper>
+            <TitleWrapper style={{backgroundColor: '#6992b8'}}>ADDITIONAL OPTIONS</TitleWrapper>
             <OptionsInvited mainName='INVITED PERSON' optionNames={['yes', 'no']} _handleIsInvited={handleIsInvited}/>
          </div>
+         <BlockSpace/>
+         {isOptions? <ProductOrderRecord nameProduct={nameProduct} _clientProperty={clientProperty}/> : <></>}
 
       </ProductClientWrapper>
      );

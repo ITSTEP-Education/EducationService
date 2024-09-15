@@ -38,7 +38,7 @@ const ProductItem: FC<NameProductItem> = (props) => {
         responseType: 'json',
     });
 
-    let queryName = dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct] == undefined ? props.nameProduct : dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct]
+    let queryName = dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct] == undefined ? props.nameProduct : dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct];
 
     useEffect(() => {
         productItemGet.get(`productitem?name=${queryName}`)

@@ -16,8 +16,8 @@ const ProductItemRecord: FC<IProductItemRecord> = (props) => {
     return(
         <div style={{width: `${props._width || 500}px` }}>
             <Display _justify='none'>
-                <TitleWrapper style={{width:'450px', textAlign: 'center'}}>SUBJECTS' DETAILS</TitleWrapper>
-                <BtnWrapper onClick={props._handleBtnSetUp}>SET UP</BtnWrapper>
+                <TitleWrapper style={{width:'450px', textAlign: 'center'}}>SUBJECT DETAILS</TitleWrapper>
+                <BtnWrapper onClick={props._handleBtnSetUp}>OPTIONS</BtnWrapper>
             </Display>
             <ProductItem nameProduct={props._nameProduct}/>
         </div>

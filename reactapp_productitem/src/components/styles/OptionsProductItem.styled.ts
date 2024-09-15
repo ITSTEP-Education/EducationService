@@ -17,7 +17,7 @@ export const TypeOption = styled.p`
 `;
 
 export const NameOption = styled(TypeOption)<TNameOption>`
-    background-color: ${props => props.isActive? '#49ed0e' : '#f5c020'};
+    background-color: ${props => props.isActive? '#49ed0e' : '#c2a75f'};
     box-shadow: ${props => props.isActive? '-2px -2px 1px gray' : 'none'};
     width: 130px;
     cursor: pointer;
