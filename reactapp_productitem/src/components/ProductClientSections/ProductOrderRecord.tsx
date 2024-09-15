@@ -26,7 +26,7 @@ const ProductOrderRecord: FC<IProductOrderRecord> = (props) => {
 
     const handleProductOrder = () => {
 
-        const productOrderGet = axios.create({
+        const productOrderPost = axios.create({
             baseURL: 'https://localhost:7296/api/ProductItem',
             method: 'post',
             responseType: 'json',
@@ -37,7 +37,7 @@ const ProductOrderRecord: FC<IProductOrderRecord> = (props) => {
     
         let queryName = dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct] == undefined ? props.nameProduct : dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct];
 
-        productOrderGet.post(`productorder?name=${queryName}`,  props._clientProperty)
+        productOrderPost.post(`productorder?name=${queryName}`,  props._clientProperty)
         .then((responce) => {           
             setProductOrder(responce.data);
         })
