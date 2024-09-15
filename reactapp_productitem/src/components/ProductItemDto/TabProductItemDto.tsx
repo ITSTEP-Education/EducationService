@@ -6,6 +6,7 @@ import './TabProductItemDto.css'
 interface ITabProductItemDto {
    isTableLoad: boolean | false,
    _handleNameProduct: (e: React.FormEvent<HTMLElement>) => void,
+   _handleEngineerType: (e: React.FormEvent<HTMLElement>) => void,
 }
 
 interface IProductItemDto{
@@ -14,9 +15,12 @@ interface IProductItemDto{
    typeEngeeniring: string,
 }
 
-const Product = (product: IProductItemDto | null,  handleNameProduct: (e: React.FormEvent<HTMLElement>) => void): React.ReactElement => {
+const Product = (product: IProductItemDto | null,  
+   handleNameProduct: (e: React.FormEvent<HTMLElement>) => void,
+   handleEngineerType: (e: React.FormEvent<HTMLElement>) => void): React.ReactElement => {
+
    return (
-      <tr onClick={handleNameProduct}>
+      <tr onClick={(e) => {handleNameProduct(e), handleEngineerType(e)}}>
          <td>{product?.id}</td>
          <td>{product?.name}</td>
          <td>{product?.typeEngeeniring}</td>
@@ -52,7 +56,7 @@ const TabProductItemDto: FC<ITabProductItemDto> = (props) => {
 
    let rowProducts = [];
    for(const product of productsItemDto){
-      rowProducts.push(Product(product, props._handleNameProduct));
+      rowProducts.push(Product(product, props._handleNameProduct, props._handleEngineerType));
    }
 
    return (

@@ -6,6 +6,7 @@ import ProductItem from "../ProductItem/ProductItem";
 interface IProductItemRecord{
     _width?: number,
     _nameProduct: string | null,
+    _handleBtnSetUp: (e: React.FormEvent<HTMLElement>) => void,
 }
 
 const ProductItemRecord: FC<IProductItemRecord> = (props) => {
@@ -16,7 +17,7 @@ const ProductItemRecord: FC<IProductItemRecord> = (props) => {
         <div style={{width: `${props._width || 500}px` }}>
             <Display _justify='none'>
                 <TitleWrapper style={{width:'450px', textAlign: 'center'}}>SUBJECTS' DETAILS</TitleWrapper>
-                <BtnWrapper>SET UP</BtnWrapper>
+                <BtnWrapper onClick={props._handleBtnSetUp}>SET UP</BtnWrapper>
             </Display>
             <ProductItem nameProduct={props._nameProduct}/>
         </div>

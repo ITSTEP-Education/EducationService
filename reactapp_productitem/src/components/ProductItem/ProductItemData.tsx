@@ -4,3 +4,5 @@ export const dictNameToRoute: {[key: string]: string} = {
 }
 
 export const optionsForm: Array<string> = ["daily", "holiday", "remote"];
+export const optionsPayMethod: Array<string> = ["cash", "credit", "bitcoin"];
+export const optionsPayPeriod: Array<string> = ["full", "yearly", "monthly"];
