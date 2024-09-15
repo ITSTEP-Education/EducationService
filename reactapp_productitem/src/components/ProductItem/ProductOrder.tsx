@@ -32,7 +32,7 @@ const ProductOrder: FC<TProductOrder> = (props) => {
                 <th>Months, qty</th>
                 <th>Price, UAH</th>
             </tr>
-            {recordProductOrder(props._productOrder)}
+            {props._productOrder? recordProductOrder(props._productOrder) : <></>}
         </TableWrapper>
     );
 }

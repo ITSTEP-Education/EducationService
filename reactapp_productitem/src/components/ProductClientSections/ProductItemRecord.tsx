@@ -17,7 +17,7 @@ const ProductItemRecord: FC<IProductItemRecord> = (props) => {
         <div style={{width: `${props._width || 500}px` }}>
             <Display _justify='none'>
                 <TitleWrapper style={{width:'450px', textAlign: 'center'}}>SUBJECT DETAILS</TitleWrapper>
-                <BtnWrapper onClick={props._handleBtnSetUp}>OPTIONS</BtnWrapper>
+                <BtnWrapper onDoubleClick={props._handleBtnSetUp}>OPTIONS</BtnWrapper>
             </Display>
             <ProductItem nameProduct={props._nameProduct}/>
         </div>

@@ -29,9 +29,9 @@ const OptionsEducation: FC<IOptionsEducation> = (props) => {
     return(
         <OptionsEducationWrap>
             <TypeOption>{props.mainName}</TypeOption>
-            <NameOption title={props.optionNames[0]} isActive={isActivities[0]} onClick={(e) => {handleIsActivities(0, e)}}>{props.optionNames[0].toUpperCase()}</NameOption>
-            <NameOption title={props.optionNames[1]} isActive={isActivities[1]} onClick={(e) => {handleIsActivities(1, e)}}>{props.optionNames[1].toUpperCase()}</NameOption>
-            <NameOption title={props.optionNames[2]} isActive={isActivities[2]} onClick={(e) => {handleIsActivities(2, e)}}>{props.optionNames[2].toUpperCase()}</NameOption>
+            <NameOption title={props.optionNames[0]} isActive={isActivities[0]} onDoubleClick={(e) => {handleIsActivities(0, e)}}>{props.optionNames[0].toUpperCase()}</NameOption>
+            <NameOption title={props.optionNames[1]} isActive={isActivities[1]} onDoubleClick={(e) => {handleIsActivities(1, e)}}>{props.optionNames[1].toUpperCase()}</NameOption>
+            <NameOption title={props.optionNames[2]} isActive={isActivities[2]} onDoubleClick={(e) => {handleIsActivities(2, e)}}>{props.optionNames[2].toUpperCase()}</NameOption>
         </OptionsEducationWrap>
     );
 };

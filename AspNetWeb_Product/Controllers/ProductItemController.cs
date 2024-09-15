@@ -65,7 +65,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        [HttpGet("productorder", Name = "GetProductOrder")]
+        [HttpPost("productorder", Name = "GetProductOrder")]
         public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, 
             [FromBody] ClientProperty clientProps)
         {

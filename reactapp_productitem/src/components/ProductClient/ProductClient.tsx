@@ -107,8 +107,6 @@ const ProductClient: FC<ProductClientProps> = (): React.FunctionComponentElement
             payPeriod: payPeriod,
          }
       });
-      // console.log(payPeriod);
-      // console.log(clientProperty);
    }
 
    return (

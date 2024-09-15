@@ -22,46 +22,42 @@ type TProductItemOrder = {
 
 const ProductOrderRecord: FC<IProductOrderRecord> = (props) => {
 
-    const [isProductOrder, setIsProductOrder] = useState<boolean>(false);
     const [productOrder, setProductOrder] = useState<TProductItemOrder | null>({name:'none', typeEngeeniring:'none', timeStudy:0, sumPay:0});
 
-    const handleIsProductOrder = () => {
-        setIsProductOrder(!isProductOrder);
-    }
+    const handleProductOrder = () => {
 
-    if(isProductOrder) {      
-    
         const productOrderGet = axios.create({
             baseURL: 'https://localhost:7296/api/ProductItem',
-            method: 'get',
+            method: 'post',
             responseType: 'json',
+            headers:{
+                'Content-Type': 'application/json'
+            }
         });
     
         let queryName = dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct] == undefined ? props.nameProduct : dictNameToRoute[props.nameProduct == null ? 'none' : props.nameProduct];
-     
-        console.log(queryName);
+
+        productOrderGet.post(`productorder?name=${queryName}`,  props._clientProperty)
+        .then((responce) => {           
+            setProductOrder(responce.data);
+        })
+        .catch((error) => {
+            console.log(error);
+            setProductOrder(null);
+        });       
+
         console.log(props._clientProperty);
+    }
 
-        // useEffect(() => {
-        //     productOrderGet.get(`productorder?name=${queryName}`)
-        //     .then((responce) => {
-                
-        //         setProductOrder(responce.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-        // }, []);
-    };
-
+    useEffect(handleProductOrder, [props.nameProduct, props._clientProperty]);
 
     return(
         <div style={{width: `${props._width || 500}px`}}>
             <Display _justify='none'>
                 <TitleWrapper style={{width:'450px', textAlign: 'center'}}>ORDER DETAILS</TitleWrapper>
-                <BtnWrapper onClick={handleIsProductOrder}>SHOW</BtnWrapper>
+                <BtnWrapper onClick={handleProductOrder} >SHOW</BtnWrapper>
             </Display>
-            {isProductOrder? <ProductOrder _productOrder={productOrder}/> : <></>}
+            <ProductOrder _productOrder={productOrder}/>
         </div>
     );
 }
