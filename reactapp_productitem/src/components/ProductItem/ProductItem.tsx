@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
-import { TableWrapper } from '../ProductItemDto/TabProductItemDto.styled';
-import '../ProductItemDto/TabProductItemDto.css';
-import { dictNameToRoute } from './ProductItemData';
+import { TableWrapper } from '../styles/TableProduct.styled';
+import '../styles/TableProduct.css';
+import { dictNameToRoute } from '../../contexts/ProductItemData';
 
 type NameProductItem = {
     nameProduct: string | null

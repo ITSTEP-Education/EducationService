@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react';
 import { ProductClientWrapper } from './ProductClient.styled';
-import { TitleWrapper, BtnWrapper } from '../styles/ProductItem.styled';
-import TabProductItemDto from '../ProductItemDto/TabProductItemDto';
-import ProductItemRecord from '../ProductClientSections/ProductItemRecord';
-import ProductOrderRecord from '../ProductClientSections/ProductOrderRecord';
-import OptionsEducation from '../ProductClientSections/OptionsEducation';
-import OptionsInvited from '../ProductClientSections/OptionsInvited';
-import { Display, BlockSpace } from '../styles/General.styled';
-import { optionsForm, optionsPayMethod, optionsPayPeriod } from '../ProductItem/ProductItemData';
+import { TitleWrapper, BtnWrapper } from '../../ui/styled/ProductItem.styled';
+import TabProductItemDto from '../../components/ProductItemDto/TabProductItemDto';
+import ProductItemRecord from '../../components/ProductClientSections/ProductItemRecord';
+import ProductOrderRecord from '../../components/ProductClientSections/ProductOrderRecord';
+import OptionsEducation from '../../components/options/OptionsEducation';
+import OptionsInvited from '../../components/options/OptionsInvited';
+import { Display, BlockSpace } from '../../ui/styled/General.styled';
+import { optionsForm, optionsPayMethod, optionsPayPeriod } from '../../contexts/ProductItemData';
 
 
 interface ProductClientProps {}

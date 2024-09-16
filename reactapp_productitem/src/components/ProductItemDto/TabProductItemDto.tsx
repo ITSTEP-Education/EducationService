@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import axios from 'axios';
-import { TableWrapper } from './TabProductItemDto.styled';
-import './TabProductItemDto.css'
+import { TableWrapper } from '../styles/TableProduct.styled';
+import '../styles/TableProduct.css'
 
 interface ITabProductItemDto {
    isTableLoad: boolean | false,

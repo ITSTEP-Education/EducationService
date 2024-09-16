@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import { TypeOption, NameOption } from "../styles/OptionsProductItem.styled";
-import { OptionsEducationWrap } from "./OptionsEducation.styled";
+import { TypeOption, NameOption } from "../../ui/styled/OptionsProductItem.styled";
+import { OptionsEducationWrap } from "../../ui/styled/OptionsEducation.styled";
 
 interface IOptionsEducation {
     mainName: string,

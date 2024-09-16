@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { Display } from "../styles/General.styled";
-import { TitleWrapper, BtnWrapper } from "../styles/ProductItem.styled";
+import { Display } from "../../ui/styled/General.styled";
+import { TitleWrapper, BtnWrapper } from "../../ui/styled/ProductItem.styled";
 import ProductItem from "../ProductItem/ProductItem";
 
 interface IProductItemRecord{

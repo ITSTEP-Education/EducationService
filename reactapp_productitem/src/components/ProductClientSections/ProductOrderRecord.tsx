@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
 import axios from 'axios';
-import { Display } from "../styles/General.styled";
-import { TitleWrapper, BtnWrapper } from "../styles/ProductItem.styled";
+import { Display } from "../../ui/styled/General.styled";
+import { TitleWrapper, BtnWrapper } from "../../ui/styled/ProductItem.styled";
 import ProductOrder from "../ProductItem/ProductOrder";
-import { dictNameToRoute } from "../ProductItem/ProductItemData";
-import { TClientProperty } from '../ProductClient/ProductClient';
+import { dictNameToRoute } from "../../contexts/ProductItemData";
+import { TClientProperty } from '../../blocks/product/ProductClient';
 
 
 interface IProductOrderRecord{

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { TableWrapper } from '../ProductItemDto/TabProductItemDto.styled';
-import '../ProductItemDto/TabProductItemDto.css';
+import { TableWrapper } from '../styles/TableProduct.styled';
+import '../styles/TableProduct.css';
 
 type TProductItemOrder = {
     name: string,

@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import { TypeOption, NameOption } from "../styles/OptionsProductItem.styled";
-import { OptionsEducationWrap } from "./OptionsEducation.styled";
+import { TypeOption, NameOption } from "../../ui/styled/OptionsProductItem.styled";
+import { OptionsEducationWrap } from "../../ui/styled/OptionsEducation.styled";
 
 
 type TInvitedPerson = {
@@ -27,13 +27,13 @@ const OptionsInvited: FC<TInvitedPerson> = (props) => {
         props._handleIsInvited(e);
     }
 
-    return(<>
+    return(
         <OptionsEducationWrap>
             <TypeOption style={{width: '240px'}}>{props.mainName}</TypeOption>
             <NameOption title={props.optionNames[0]} isActive={isActivities[0]} onClick={(e) => {handleIsActivities(0, e)}}>{props.optionNames[0].toUpperCase()}</NameOption>
             <NameOption title={props.optionNames[1]} isActive={isActivities[1]} onClick={(e) => {handleIsActivities(1, e)}}>{props.optionNames[1].toUpperCase()}</NameOption>
         </OptionsEducationWrap>
-    </>);
+    );
 }
 
 export default OptionsInvited;
