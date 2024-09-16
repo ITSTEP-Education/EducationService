@@ -46,7 +46,7 @@ const ProductOrderRecord: FC<IProductOrderRecord> = (props) => {
             setProductOrder(null);
         });       
 
-        console.log(props._clientProperty);
+        // console.log(props._clientProperty);
     }
 
     useEffect(handleProductOrder, [props.nameProduct, props._clientProperty]);

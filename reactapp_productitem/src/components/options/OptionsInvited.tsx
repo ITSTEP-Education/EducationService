@@ -22,8 +22,8 @@ const OptionsInvited: FC<TInvitedPerson> = (props) => {
                 return false;
             }
         });
-        setIsActivities(nextIsActivities);
 
+        setIsActivities(nextIsActivities);
         props._handleIsInvited(e);
     }
 

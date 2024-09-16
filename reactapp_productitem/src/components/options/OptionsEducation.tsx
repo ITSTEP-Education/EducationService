@@ -21,8 +21,8 @@ const OptionsEducation: FC<IOptionsEducation> = (props) => {
                 return false;
             }
         });
-        setIsActivities(nextIsActivities);
 
+        setIsActivities(nextIsActivities);
         props._handleEducationForm(e);
     }
 
