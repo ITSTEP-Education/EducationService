@@ -10,6 +10,7 @@ namespace AspNetWeb_NLayer.DAL.Entities
         public int durationMonth { get; set; }
         public float price { get; set; }
 
+        public ProductItem() { }
         public ProductItem(string name, string description, string typeEngeeniring)
         {
             this.name = name.ToLower();

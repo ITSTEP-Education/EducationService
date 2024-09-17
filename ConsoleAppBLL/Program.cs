@@ -1,11 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AspNetWeb_NLayer.BLL.DTO;
 using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Repositories;
-using Microsoft.EntityFrameworkCore;
 using AspNetWeb_NLayer.BLL.BussinesModels;
+using System.Linq;
 
 internal class Program
 {
@@ -13,15 +12,17 @@ internal class Program
     {
         Console.WriteLine("BLL is lunched");
 
-        string DefaultDbConnection = "data source=DESKTOP-9C2MS1P\\SQLEXPRESS; Database=products; Trusted_Connection=TRUE; MultipleActiveResultSets=TRUE; TrustServerCertificate=True;";
-        var options = new DbContextOptionsBuilder<ProductContext>().UseSqlServer(DefaultDbConnection).Options;
-
-        var productContext = new ProductContext(options);
+        var productContext = new ProductContext();
         var products = productContext.productItems;
 
         try
         {
             var ps = new ProductService(new UnitOfWork(productContext));
+
+            //var items = ps.db.productItems.getAllItems();
+            //var item0 = items.ElementAt(0);
+            //Console.WriteLine(item0.description);
+
             var item = ps.db.productItems.getItem("c++");
             Console.WriteLine($"ProductItem: {item?.name} | {item?.typeEngeeniring} | {item?.durationMonth} | {item?.price}");
 
@@ -37,7 +38,3 @@ internal class Program
         }
     }
 }
-
-//var services = new ServiceCollection();
-//services.AddDbContext<ProductContext>(options => options.UseSqlServer(DefaultDbConnection));
-//var serviceProvider = services.BuildServiceProvider();
