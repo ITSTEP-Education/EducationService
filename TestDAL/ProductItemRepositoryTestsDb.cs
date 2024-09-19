@@ -1,14 +1,8 @@
-using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Entities;
-using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
-using AspNetWeb_NLayer.DAL.Tests;
 using AspNetWeb_NLayer.DAL.Tests.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using System.Diagnostics.CodeAnalysis;
 
-namespace TestDAL
+namespace AspNetWeb_NLayer.DAL.Tests
 {
     [Collection(name: "DatabaseFixture")]
     public class ProductItemRepositoryTestsDb : IClassFixture<DatabaseFixture>
