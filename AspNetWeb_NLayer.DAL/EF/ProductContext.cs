@@ -8,18 +8,18 @@ namespace AspNetWeb_NLayer.DAL.EF
     {
         public DbSet<ProductItem> productItems { get; set; } = null!;
 
-        public ProductContext() { }
+        //public ProductContext() { }
         public ProductContext(DbContextOptions<ProductContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .Build();
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var config = new ConfigurationBuilder()
+        //        .AddJsonFile("appsettings.json")
+        //        .SetBasePath(Directory.GetCurrentDirectory())
+        //        .Build();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultDbConnection"));
-        }
+        //    optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultDbConnection"));
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
