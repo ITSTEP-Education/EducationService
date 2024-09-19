@@ -6,38 +6,59 @@ using Moq;
 
 namespace AspNetWeb_NLayer.DAL.Tests
 {
-    public class ProductItemRepositoryTests
+    public class ProductItemRepositoryTests : IDisposable
     {
-        public Mock<DbSet<ProductItem>> mockSetProductItem { get; private set; }
-        public Mock<ProductContext> mockProductContext { get; private set; }
+        public ProductContext context { get; private set; }
+        public ProductItemRepository repository { get; private set; }
+        private bool isContextFilled;
+        private bool disposed = false;
 
         public ProductItemRepositoryTests()
         {
-            mockSetProductItem = new Mock<DbSet<ProductItem>>();
-            mockProductContext = new Mock<ProductContext>();
+            var options = new DbContextOptionsBuilder<ProductContext>().UseInMemoryDatabase(databaseName: "TestDatabase").Options;
+            context = new ProductContext(options);
+            repository = new ProductItemRepository(context);
         }
 
         [Fact(DisplayName = "2 get correct type ProductItem from SQL dbo.productitems")]
-        public void GetItem_ReturnProductItem()
+        public void GetItemByName_Return_CorrectProductItem()
         {
-            mockSetProductItem.Setup(c => c.FirstOrDefault(x => x.name.Equals(It.IsAny<object[]>()))).Returns(new ProductItem()
-            {
-                id = 1,
-                name = "c++",
-                description = "low-level language",
-                typeEngeeniring = "back-end",
-                durationMonth = 12,
-                price = 2000
-            });
-
-            mockProductContext.Setup(c => c.productItems).Returns(mockSetProductItem.Object);
-            var service = new ProductItemRepository(mockProductContext.Object);
-
-            var result = service.getItem("c++");
+            fillContext();
+            var result = repository.getItem("c++");
 
             Assert.NotNull(result);
-            //Assert.IsType<ProductItem>(result);
-            //Assert.Equal(2000, result.price);
+            Assert.Equal(2000, result.price);
+        }
+
+        private void fillContext()
+        {
+            if (isContextFilled) return;
+
+            context.productItems.AddRange(
+                new ProductItem() { id = 1, name = "c++", description = "low-level language", typeEngeeniring = "back-end", durationMonth = 12, price = 2000 },
+                new ProductItem() { id = 7, name = "css", description = "none", typeEngeeniring = "front-end", durationMonth = 4, price = 500 }
+                );
+            context.SaveChanges();
+
+            isContextFilled = true;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
