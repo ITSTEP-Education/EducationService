@@ -3,11 +3,11 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace AspNetWeb_Product.Tests
 {
-    public class ProductControllerTests : IClassFixture<WebApplicationFactory<AspNetWeb_Product.Program>>
+    public class ProductControllerTestsRoute : IClassFixture<WebApplicationFactory<AspNetWeb_Product.Program>>
     {
         private readonly HttpClient client;
 
-        public ProductControllerTests(WebApplicationFactory<AspNetWeb_Product.Program> factory)
+        public ProductControllerTestsRoute(WebApplicationFactory<AspNetWeb_Product.Program> factory)
         {
             client = factory.CreateClient();
         }
