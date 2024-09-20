@@ -4,7 +4,7 @@ using AspNetWeb_NLayer.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace AspNetWeb_NLayer.DAL.Tests
+namespace AspNetWeb_NLayer.DAL.Tests.Tests
 {
     public class ProductItemRepositoryTests : IDisposable
     {

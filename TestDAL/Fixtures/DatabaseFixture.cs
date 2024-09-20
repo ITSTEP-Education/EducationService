@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetWeb_NLayer.DAL.Tests
+namespace AspNetWeb_NLayer.DAL.Tests.Fixtures
 {
     public class DatabaseFixture : IDisposable
     {
@@ -12,8 +12,8 @@ namespace AspNetWeb_NLayer.DAL.Tests
         private bool disposed = false;
         //private IServiceScope scope;
 
-        public DatabaseFixture() 
-        { 
+        public DatabaseFixture()
+        {
             var configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
 
             var services = new ServiceCollection();

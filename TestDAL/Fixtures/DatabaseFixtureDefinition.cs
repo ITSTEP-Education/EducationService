@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AspNetWeb_NLayer.DAL.Tests
+namespace AspNetWeb_NLayer.DAL.Tests.Fixtures
 {
-    [CollectionDefinition(name:"DatabaseFixture")]
+    [CollectionDefinition(name: "DatabaseFixture")]
     public class DatabaseFixtureDefinition : ICollectionFixture<DatabaseFixture>
     {
     }
