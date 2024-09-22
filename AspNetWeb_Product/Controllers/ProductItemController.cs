@@ -4,8 +4,11 @@ using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Common;
+using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace AspNetWeb_Product.Controllers
 {
@@ -22,7 +25,21 @@ namespace AspNetWeb_Product.Controllers
             this.logger = logger;
         }
 
+        /// <summary>
+        /// request to get entities ProductItemDto
+        /// </summary>
+        /// <value>on of the <see cref="ProductItemDto"> inherited from <see cref="ProductItem"></value>
+        /// <returns>Ok(...) or BadRequest(...)</returns>
+        /// <example>
+        /// content of ProductItemExceptio
+        /// <code>
+        /// new ProductItemException("absent table", "products")
+        /// </code>
+        /// </example>
+        /// <responce code="200">Successful fullfilment</responce>
+        /// <exception cref="ProductItemException">appear if in db records is absent for ProductItem</exception>
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
+        [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), 200)]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
         {
             try

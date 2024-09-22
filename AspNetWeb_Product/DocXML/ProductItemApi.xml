@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetWeb_Product</name>
+    </assembly>
+    <members>
+		<GetAllItemsDto>
+			
+		</GetAllItemsDto>
+	</members>
+</doc>

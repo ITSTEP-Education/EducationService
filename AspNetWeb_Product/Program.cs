@@ -18,6 +18,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    //add documentation of api to represent it inside SwaggerUI
     options.SwaggerDoc("v1.0.0", new OpenApiInfo
     {
         Version = "v1.0.0",
@@ -35,6 +36,11 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://mystat.itstep.org/")
         }
     });
+
+    //connect service of display XML comments in SwaggerUI
+    var basePath = AppContext.BaseDirectory;
+    var xmlPath = Path.Combine(basePath, "ProductItemApi.xml");
+    options.IncludeXmlComments(xmlPath);
 });
 
 var app = builder.Build();

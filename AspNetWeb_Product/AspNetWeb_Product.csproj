@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\student\Desktop\polxs_wp31\AspNet\Projects\AspNetWeb_NLayer\AspNetWeb_Product\DocXML\ProductItemApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +18,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetWeb_NLayer.BLL\AspNetWeb_NLayer.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DocXML\" />
   </ItemGroup>
 
 </Project>
