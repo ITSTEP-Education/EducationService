@@ -11,7 +11,7 @@ namespace AspNetWeb_NLayer.BLL.BussinesModels
         {
             invitedPerson = 500;
             payMethod = new Dictionary<string, float>() { { "cash", 5 / 100f }, { "credit", 0 }, { "bitcoin", 10 / 100f } };
-            payPeriod = new Dictionary<string, float>() { { "yearly", 3 / 100f }, { "monthly", 0 } };
+            payPeriod = new Dictionary<string, float>() { { "full", 5 / 100f }, { "yearly", 3 / 100f }, { "monthly", 0 } };
         }
     }
 }

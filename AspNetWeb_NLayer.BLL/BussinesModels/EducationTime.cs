@@ -16,10 +16,17 @@ namespace AspNetWeb_NLayer.BLL.BussinesModels
             if (cltTimeProps.EducationForm != "daily" && cltTimeProps.EducationForm != "holiday")
                 throw new ProductItemException("absent form education", cltTimeProps.EducationForm);
 
-            if (cltTimeProps.EducationForm == "daily") return timeDurationMonth;
-
-            if (this.ContainsKey(cltTimeProps.EngineerType)) { 
-                return timeDurationMonth + this[cltTimeProps.EngineerType]; 
+            if (cltTimeProps.EducationForm == "daily")
+            {
+                return timeDurationMonth;
+            }
+            else if (cltTimeProps.EducationForm == "holiday")
+            {
+                return timeDurationMonth + this[cltTimeProps.EngineerType];
+            }
+            else if (cltTimeProps.EducationForm == "remote")
+            {
+                return (int)((timeDurationMonth + this[cltTimeProps.EngineerType]) * 1.5);
             }
             else
             {
