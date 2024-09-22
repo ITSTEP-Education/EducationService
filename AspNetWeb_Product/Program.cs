@@ -39,8 +39,8 @@ builder.Services.AddSwaggerGen(options =>
 
     //connect service of display XML comments in SwaggerUI
     var basePath = AppContext.BaseDirectory;
-    var xmlPath = Path.Combine(basePath, "ProductItemApi.xml");
-    options.IncludeXmlComments(xmlPath);
+    options.IncludeXmlComments(Path.Combine(basePath, "ProductItemApi.xml"));
+    options.IncludeXmlComments(Path.Combine(basePath, "BLL.xml"));
 });
 
 var app = builder.Build();

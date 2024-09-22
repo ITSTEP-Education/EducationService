@@ -1,6 +1,7 @@
 ﻿
 namespace AspNetWeb_NLayer.BLL.DTO
 {
+    /// <include file='../DocXML/BLLDocumentation.xml' path='docs/members[@name="models"]/ProductItemOrder/*'/>
     public class ProductItemOrder
     {
         public string name { get; set; } = null!;

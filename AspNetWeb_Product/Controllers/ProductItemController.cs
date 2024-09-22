@@ -25,21 +25,9 @@ namespace AspNetWeb_Product.Controllers
             this.logger = logger;
         }
 
-        /// <summary>
-        /// request to get entities ProductItemDto
-        /// </summary>
-        /// <value>on of the <see cref="ProductItemDto"> inherited from <see cref="ProductItem"></value>
-        /// <returns>Ok(...) or BadRequest(...)</returns>
-        /// <example>
-        /// content of ProductItemExceptio
-        /// <code>
-        /// new ProductItemException("absent table", "products")
-        /// </code>
-        /// </example>
-        /// <responce code="200">Successful fullfilment</responce>
-        /// <exception cref="ProductItemException">appear if in db records is absent for ProductItem</exception>
+        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/GetAllItemsDto/*'/>
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
-        [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), (int)HttpStatusCode.OK)]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
         {
             try
