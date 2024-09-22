@@ -1,19 +1,20 @@
-﻿using AspNetWeb_NLayer.BLL.BussinesModels;
+﻿using Asp.Versioning;
 using AspNetWeb_NLayer.BLL.DTO;
 using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Common;
 using System.Net;
-using System.Runtime.CompilerServices;
 
 namespace AspNetWeb_Product.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProductItemController : ControllerBase
     {
         private readonly IProductService productServ;
@@ -26,6 +27,7 @@ namespace AspNetWeb_Product.Controllers
         }
 
         ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/GetAllItemsDto/*'/>
+        [MapToApiVersion("1.0")]
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
         [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), (int)HttpStatusCode.OK)]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
@@ -40,6 +42,8 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        
+        [MapToApiVersion("2.0")]
         [HttpGet("all-productitems", Name = "GetAllItems")]
         public ActionResult<IEnumerable<ProductItem>> getAllItems() 
         {
@@ -53,6 +57,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("productitem", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
         {
@@ -70,6 +75,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("3.0")]
         [HttpGet("productorder", Name = "GetProductOrder")]
         public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, 
             [FromBody] ClientProperty clientProps)

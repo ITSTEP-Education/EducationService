@@ -1,10 +1,13 @@
+using Asp.Versioning;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
+using AspNetWeb_Product.Swagger;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,31 +19,35 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+//set for varsioning in Swagger;
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
 builder.Services.AddSwaggerGen(options =>
 {
-    //add documentation of api to represent it inside SwaggerUI
-    options.SwaggerDoc("v1.0.0", new OpenApiInfo
-    {
-        Version = "v1.0.0",
-        Title = "ProductItem Api",
-        Description = "Api request to get ProductItem and convert it to ProductOrder",
-        Contact = new OpenApiContact
-        {
-            Name = "KostiantynPolishko",
-            Email = "polxs_wp31@student.itstep.org",
-            Url = new Uri("https://github.com/KostiantynPolishko2/AspNetWeb_NLayer/tree/dev_MultyLayers")
-        },
-        License = new OpenApiLicense
-        {
-            Name = "ApiITSTEP",
-            Url = new Uri("https://mystat.itstep.org/")
-        }
-    });
+    //add custom operation filter which sets default values
+    options.OperationFilter<SwaggerDefaultValues>();
 
     //connect service of display XML comments in SwaggerUI
     var basePath = AppContext.BaseDirectory;
     options.IncludeXmlComments(Path.Combine(basePath, "ProductItemApi.xml"));
     options.IncludeXmlComments(Path.Combine(basePath, "BLL.xml"));
+});
+
+//Add services of versioning in Swagger
+builder.Services.AddApiVersioning(configure =>
+{
+    configure.DefaultApiVersion = new ApiVersion(1, 0);
+    configure.AssumeDefaultVersionWhenUnspecified = true;
+    configure.ReportApiVersions = true;
+    configure.ApiVersionReader = new UrlSegmentApiVersionReader();
+});
+
+builder.Services.AddApiVersioning().AddApiExplorer(configure =>
+{
+    configure.GroupNameFormat = "'v'VVV";
+    configure.SubstituteApiVersionInUrl = true;
 });
 
 var app = builder.Build();
@@ -49,9 +56,26 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(config =>
+    app.UseSwaggerUI(configure => { 
+        configure.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+
+        var descriptions = app.DescribeApiVersions();
+
+        //Build a swagger endpoint for each dicovered API version
+        foreach (var desctiption in descriptions)
+        {
+            var url = $"/swagger/{desctiption.GroupName}/swagger.json";
+            var name = desctiption.GroupName.ToUpperInvariant();
+            configure.SwaggerEndpoint(url, name);
+        }
+    });
+
+    app.UseMvc(routes =>
     {
-        config.SwaggerEndpoint("/swagger/v1.0.0/swagger.json", "v1.0.0");
+        routes.MapRoute(
+            name: "default",
+            template: "/{controller=ProductItem}/{action=Get}/{all-productitems-dto}"
+            );
     });
 }
 
