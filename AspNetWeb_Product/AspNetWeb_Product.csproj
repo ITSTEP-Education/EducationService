@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetWeb_NLayer.BLL\AspNetWeb_NLayer.BLL.csproj" />
-    <ProjectReference Include="..\AspNetWeb_NLayer.DAL\AspNetWeb_NLayer.DAL.csproj" />
   </ItemGroup>
 
 </Project>
