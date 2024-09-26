@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetWeb_NLayer.DAL.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20240903050915_ProductsMigration")]
-    partial class ProductsMigration
+    [Migration("20240926064744_Products")]
+    partial class Products
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,16 +36,26 @@ namespace AspNetWeb_NLayer.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("durationMonth")
+                        .HasColumnType("int");
+
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<float>("price")
+                        .HasColumnType("real");
+
+                    b.Property<string>("typeEngeeniring")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
                     b.HasIndex("name")
                         .IsUnique();
 
-                    b.ToTable("products", (string)null);
+                    b.ToTable("productitems", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,7 @@
 namespace AspNetWeb_NLayer.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductsMigration2 : Migration
+    public partial class ProductItems : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

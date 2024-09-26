@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetWeb_NLayer.DAL.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20240906085902_ProductsMigration2")]
-    partial class ProductsMigration2
+    [Migration("20240926064015_ProductItems")]
+    partial class ProductItems
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
