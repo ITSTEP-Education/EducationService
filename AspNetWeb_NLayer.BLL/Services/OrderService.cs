@@ -1,6 +1,8 @@
-﻿using AspNetWeb_NLayer.BLL.Interfaces;
+﻿using AspNetWeb_NLayer.BLL.Infrastructure;
+using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.DAL.Interfaces;
+using System.Xml;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
@@ -11,6 +13,22 @@ namespace AspNetWeb_NLayer.BLL.Services
         public OrderService(IUnitOfWork db)
         {
             this.db = db;
+        }
+
+        public IEnumerable<ProductOrder> getAllOrders()
+        {
+            var orders = db.productOrders.getAllItems();
+            if (orders == null) throw new ProductItemException("absent in db any records", "productorders");
+
+            return orders;
+        }
+
+        public ProductOrder getOrder(string guid)
+        {
+            var productOrder = db.productOrders.getItem(guid);
+            if (productOrder == null) throw new ProductItemException("absent productorder in db", guid??"none");
+
+            return productOrder;
         }
 
         public void addProductOrderGuidDate(ProductOrder productOrder)

@@ -17,15 +17,15 @@ namespace AspNetWeb_NLayer.BLL.Services
             db = uow;
         }
 
+        public ProductItemDto getProductDto(string? name) => new ProductItemDto(getProductItem(name));
+
         public ProductItem getProductItem(string? name)
         {
             var productItem = db.productItems.getItem(name);
-            if (productItem == null) throw new ProductItemException("absent product in db", name??"null");
+            if (productItem == null) throw new ProductItemException("absent productitem in db", name??"none");
 
             return productItem;
         }
-
-        public ProductItemDto getProductDto(string? name) => new ProductItemDto(getProductItem(name));
 
         public IEnumerable<ProductItemDto> getAllProductsDto() 
         {
@@ -36,7 +36,7 @@ namespace AspNetWeb_NLayer.BLL.Services
             return mapper.Map<IEnumerable<ProductItem>, IEnumerable<ProductItemDto>>(products);
         }
 
-        public ProductOrderDto getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps)
+        public ProductOrderDto getProductOrderDto(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps)
         {
             var productItem = getProductItem(name);
 

@@ -13,7 +13,7 @@ namespace AspNetWeb_NLayer.DAL.Repositories
             this.context = context;
         }
 
-        public IEnumerable<ProductOrder> getAllItems() => context.productOrders;
+        public IEnumerable<ProductOrder>? getAllItems() => context.productOrders;
 
         public ProductOrder? getItem(string? guid)
         {

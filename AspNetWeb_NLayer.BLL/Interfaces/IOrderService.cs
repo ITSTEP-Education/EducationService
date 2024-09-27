@@ -12,6 +12,10 @@ namespace AspNetWeb_NLayer.BLL.Interfaces
     {
         IUnitOfWork db { get; }
 
+        IEnumerable<ProductOrder> getAllOrders();
+
+        ProductOrder getOrder(string guid);
+
         public void addProductOrderGuidDate(ProductOrder productOrder);
 
         void Dispose();

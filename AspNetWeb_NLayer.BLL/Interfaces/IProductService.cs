@@ -9,13 +9,13 @@ namespace AspNetWeb_NLayer.BLL.Interfaces
     {
         IUnitOfWork db { get; }
 
-        ProductItem getProductItem(string? name);
-
         IEnumerable<ProductItemDto> getAllProductsDto();
+
+        ProductItem getProductItem(string? name);
 
         ProductItemDto getProductDto(string? name);
 
-        ProductOrderDto getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps);
+        ProductOrderDto getProductOrderDto(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps);
 
         void Dispose();
     }

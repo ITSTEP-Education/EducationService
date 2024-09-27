@@ -5,6 +5,7 @@ using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 
 namespace AspNetWeb_Product.Controllers
@@ -24,6 +25,7 @@ namespace AspNetWeb_Product.Controllers
             this.logger = logger;
         }
 
+        //HttpRequest for intaraction with ProductItems
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
         {
@@ -51,7 +53,7 @@ namespace AspNetWeb_Product.Controllers
         }
 
         [HttpGet("product-item", Name = "GetProductItem")]
-        public ActionResult<ProductItem> getProductItem([FromQuery] string name)
+        public ActionResult<ProductItem> getProductItem([FromQuery][Required] string name)
         {
             try
             {
@@ -67,13 +69,14 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        [HttpPost("product-order-dto", Name = "GetProductOrder")]
-        public ActionResult<ProductOrderDto> getProductrder([FromQuery] string name, 
+        //HttpRequest for intaraction with ProductOrder
+        [HttpPost("product-order-dto", Name = "GetProductOrderDto")]
+        public ActionResult<ProductOrderDto> getProductrderDto([FromQuery][Required] string name, 
             [FromBody] ClientProperty clientProps)
         {
             try
             {
-                return Ok(productServ.getProductOrder(name, clientProps.cltTimeProps, clientProps.cltPayProps));
+                return Ok(productServ.getProductOrderDto(name, clientProps.cltTimeProps, clientProps.cltPayProps));
             }
             catch (ArgumentNullException ex)
             {
@@ -100,6 +103,36 @@ namespace AspNetWeb_Product.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex);
+            }
+        }
+
+        [HttpGet("product-orders", Name = "GetProductOrders")]
+        public ActionResult<IEnumerable<ProductOrder>> getAllProductOrders()
+        {
+            try
+            {
+                return Ok(orderServ.getAllOrders());
+            }
+            catch (ProductItemException ex)
+            {
+                return BadRequest(new { msg = ex.Message, prop = ex.property });
+            }
+            catch (DbException ex)
+            {
+                return BadRequest(new { msg = ex.Message, prop = ex.SqlState });
+            }
+        }
+
+        [HttpGet("product-order", Name = "GetProductOrder")]
+        public ActionResult<ProductOrder> getProductOrder([FromQuery][Required] string guid)
+        {
+            try
+            {
+                return Ok(orderServ.getOrder(guid));
+            }
+            catch (ProductItemException ex)
+            {
+                return BadRequest(new { msg = ex.Message, prop = ex.property });
             }
         }
     }
