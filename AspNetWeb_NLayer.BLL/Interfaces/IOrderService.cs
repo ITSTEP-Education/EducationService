@@ -12,7 +12,7 @@ namespace AspNetWeb_NLayer.BLL.Interfaces
     {
         IUnitOfWork db { get; }
 
-        public void addProductOrerGuidDate(ProductOrder productOrder);
+        public void addProductOrderGuidDate(ProductOrder productOrder);
 
         void Dispose();
     }
