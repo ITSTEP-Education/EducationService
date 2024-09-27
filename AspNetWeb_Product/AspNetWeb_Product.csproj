@@ -4,7 +4,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\student\Desktop\polxs_wp31\AspNet\Projects\AspNetWeb_NLayer\DocXML\ProductItemApi.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
@@ -16,6 +23,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetWeb_NLayer.BLL\AspNetWeb_NLayer.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Swagger\" />
     <ProjectReference Include="..\AspNetWeb_NLayer.DAL\AspNetWeb_NLayer.DAL.csproj" />
   </ItemGroup>
 

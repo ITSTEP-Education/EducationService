@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetWeb_NLayer.BLL</name>
+    </assembly>
+    <members>
+        <member name="T:AspNetWeb_NLayer.BLL.DTO.ProductItemOrder">
+            <summary>
+				ProductItemOrder is result of bussines model 
+			</summary>
+        </member>
+    </members>
+</doc>

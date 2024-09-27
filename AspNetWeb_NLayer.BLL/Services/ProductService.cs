@@ -5,6 +5,7 @@ using AspNetWeb_NLayer.BLL.Infrastructure;
 using AutoMapper;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.BLL.BussinesModels;
+using AspNetWeb_NLayer.DAL.Repositories;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
@@ -16,7 +17,7 @@ namespace AspNetWeb_NLayer.BLL.Services
         { 
             db = uow;
         }
-
+        
         public ProductItemDto getProductDto(string? name) => new ProductItemDto(getProductItem(name));
 
         public ProductItem getProductItem(string? name)
@@ -26,7 +27,7 @@ namespace AspNetWeb_NLayer.BLL.Services
 
             return productItem;
         }
-
+        
         public IEnumerable<ProductItemDto> getAllProductsDto() 
         {
             var products = db.productItems.getAllItems();

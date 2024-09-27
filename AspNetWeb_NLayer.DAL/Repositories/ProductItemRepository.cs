@@ -1,4 +1,4 @@
-﻿using AspNetWeb_NLayer.DAL.EF;
+using AspNetWeb_NLayer.DAL.EF;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.DAL.Interfaces;
 
@@ -21,7 +21,7 @@ namespace AspNetWeb_NLayer.DAL.Repositories
 
             return context.productItems.FirstOrDefault(x => x.name.Equals(name.ToLower()));
         }
-
+        
         public void addProduct(ProductItem productItem)
         {
             context.productItems.Add(productItem);

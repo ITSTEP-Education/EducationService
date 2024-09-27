@@ -1,5 +1,3 @@
-﻿
-using AspNetWeb_NLayer.DAL.Entities;
 
 namespace AspNetWeb_NLayer.DAL.Interfaces
 {

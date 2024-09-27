@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<docs>
+    <members name="models">
+		<ProductItemOrder>
+			<summary>
+				ProductItemOrder is result of bussines model 
+			</summary>
+		</ProductItemOrder>
+    </members>
+</docs>

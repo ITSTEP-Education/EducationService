@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<docs>
+    <members name="controller">
+		<GetAllItemsDto>
+			<summary>
+				request to get entities ProductItemDto
+			</summary>
+			<returns>Ok(...) or BadRequest(...)</returns>
+			<example>
+				content of ProductItemExceptio
+				<code>
+					new ProductItemException("absent table", "products")
+				</code>
+			</example>
+			<remark code="200">Successful fullfilment</remark>
+			<exception cref="ProductItemException">
+				appear if in db records is absent for ProductItem
+			</exception>
+		</GetAllItemsDto>
+		<ProductItemOrder>
+			<summary>
+				ProductItemOrder is result of bussines model 
+			</summary>
+		</ProductItemOrder>
+    </members>
+</docs>
