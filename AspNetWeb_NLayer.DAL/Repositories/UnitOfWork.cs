@@ -8,6 +8,7 @@ namespace AspNetWeb_NLayer.DAL.Repositories
     {
         private ProductContext context;
         private ProductItemRepository productItemRepository = null!;
+        private ProductOrderRepository productOrderRepository = null!;
         private bool disposed = false;
 
         public UnitOfWork(ProductContext context)
@@ -21,6 +22,16 @@ namespace AspNetWeb_NLayer.DAL.Repositories
                 if (productItemRepository == null)
                     productItemRepository = new ProductItemRepository(context);
                 return productItemRepository;
+            }
+        }
+
+        public IRepository<ProductOrder> productOrders
+        {
+            get
+            {
+                if (productOrderRepository == null)
+                    productOrderRepository = new ProductOrderRepository(context);
+                return productOrderRepository;
             }
         }
 

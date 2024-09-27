@@ -5,6 +5,7 @@ using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Data.Common;
 
 namespace AspNetWeb_Product.Controllers
@@ -14,11 +15,13 @@ namespace AspNetWeb_Product.Controllers
     public class ProductItemController : ControllerBase
     {
         private readonly IProductService productServ;
+        private readonly IOrderService orderServ;
         private readonly ILogger<ProductItemController> logger;
 
-        public ProductItemController(IProductService productServ, ILogger<ProductItemController> logger)
+        public ProductItemController(IProductService productServ, IOrderService orderService, ILogger<ProductItemController> logger)
         {
             this.productServ = productServ;
+            this.orderServ = orderService;
             this.logger = logger;
         }
 
@@ -48,7 +51,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        [HttpGet("productitem", Name = "GetProductItem")]
+        [HttpGet("product-item", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery] string name)
         {
             try
@@ -65,7 +68,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        [HttpPost("productorder", Name = "GetProductOrder")]
+        [HttpPost("product-order-dto", Name = "GetProductOrder")]
         public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, 
             [FromBody] ClientProperty clientProps)
         {
@@ -87,6 +90,24 @@ namespace AspNetWeb_Product.Controllers
         public ActionResult<string> getResponce()
         {
             return Ok("ProductItem");
+        }
+
+        [HttpPost("product-order", Name = "AddProductOrder")]
+        public IActionResult AddProductOrder([FromBody] ProductOrder productOrder)
+        {
+            try
+            {
+                orderServ.addProductOrerGuidDate(productOrder);
+                return Ok(productOrder.guid);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }
