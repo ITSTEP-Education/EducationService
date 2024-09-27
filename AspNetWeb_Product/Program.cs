@@ -1,24 +1,24 @@
 using Asp.Versioning;
+using AspNetWeb_Product.Swagger;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
+using AspNetWeb_NLayer.DAL.Filter;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
-using AspNetWeb_Product.Swagger;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ProductContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDbConnection")));
+builder.Services.AddDbContext<ProductContext>(config => config.UseSqlServer(builder.Configuration.GetConnectionString("SmarterDbConnection")));
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 //set for varsioning in Swagger;
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
@@ -48,6 +48,24 @@ builder.Services.AddApiVersioning().AddApiExplorer(configure =>
 {
     configure.GroupNameFormat = "'v'VVV";
     configure.SubstituteApiVersionInUrl = true;
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(configure =>
+{
+    //Connected attribute [SwaggerIgnore] to hide requested fields from SwaggerUI
+    configure.SchemaFilter<SwaggerSkipPropertyFilter>();
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        configurePolicy: policy =>
+        {
+            policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
 });
 
 var app = builder.Build();
@@ -80,6 +98,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
