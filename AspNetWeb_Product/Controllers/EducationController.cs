@@ -65,7 +65,7 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
-                return BadRequest(new ProductItemException(ex));
+                return NotFound(new ProductItemException(ex));
             }
         }
 
@@ -91,6 +91,8 @@ namespace AspNetWeb_Product.Controllers
         [HttpPost("product-order", Name = "AddProductOrder")]
         public IActionResult AddProductOrder([FromBody] ProductOrder productOrder)
         {
+            if (!ModelState.IsValid) return BadRequest("model is not valid");
+
             try
             {
                 orderServ.addProductOrderGuidDate(productOrder);
@@ -115,7 +117,7 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
-                return BadRequest(new { msg = ex.Message, prop = ex.property });
+                return NotFound(new { msg = ex.Message, prop = ex.property });
             }
             catch (DbException ex)
             {
@@ -132,7 +134,7 @@ namespace AspNetWeb_Product.Controllers
             }
             catch (ProductItemException ex)
             {
-                return BadRequest(new { msg = ex.Message, prop = ex.property });
+                return NotFound(new { msg = ex.Message, prop = ex.property });
             }
         }
     }

@@ -35,6 +35,9 @@ namespace AspNetWeb_NLayer.BLL.Services
         {
             if (productOrder == null) throw new ArgumentNullException(nameof(productOrder.name));
 
+            productOrder.timeStudy = Math.Abs(productOrder.timeStudy);
+            productOrder.sumPay = Math.Abs(productOrder.sumPay);
+
             productOrder.guid = Guid.NewGuid().ToString();
 
             bool flag = DateTime.TryParse(DateTime.Now.ToString("g"), out DateTime result);
