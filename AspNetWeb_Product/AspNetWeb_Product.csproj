@@ -19,4 +19,8 @@
     <ProjectReference Include="..\AspNetWeb_NLayer.DAL\AspNetWeb_NLayer.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Filter\" />
+  </ItemGroup>
+
 </Project>

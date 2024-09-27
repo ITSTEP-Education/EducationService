@@ -1,6 +1,7 @@
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.BLL.Services;
 using AspNetWeb_NLayer.DAL.EF;
+using AspNetWeb_NLayer.DAL.Filter;
 using AspNetWeb_NLayer.DAL.Interfaces;
 using AspNetWeb_NLayer.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,11 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(configure =>
+{
+    //Connected attribute [SwaggerIgnore] to hide requested fields from SwaggerUI
+    configure.SchemaFilter<SwaggerSkipPropertyFilter>();
+});
 
 builder.Services.AddCors(options =>
 {
