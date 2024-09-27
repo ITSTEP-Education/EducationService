@@ -1,9 +1,32 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_NLayer.DAL", "AspNetWeb_NLayer.DAL\AspNetWeb_NLayer.DAL.csproj", "{2C4346FB-E084-41DC-A19B-117E474315ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_NLayer.BLL", "AspNetWeb_NLayer.BLL\AspNetWeb_NLayer.BLL.csproj", "{E388864F-9A96-4A6D-A18A-5D94F6EA3650}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetWeb_Product", "AspNetWeb_Product\AspNetWeb_Product.csproj", "{AADA182F-EEB4-4E0D-9785-E5B1420FE592}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C4346FB-E084-41DC-A19B-117E474315ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4346FB-E084-41DC-A19B-117E474315ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4346FB-E084-41DC-A19B-117E474315ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4346FB-E084-41DC-A19B-117E474315ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E388864F-9A96-4A6D-A18A-5D94F6EA3650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AADA182F-EEB4-4E0D-9785-E5B1420FE592}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<docs>
+    <members name="models">
+		<ProductItemOrder>
+			<summary>
+				ProductOrderDto is result of bussines model and proposal for client
+			</summary>
+		</ProductItemOrder>
+    </members>
+</docs>
