@@ -29,6 +29,9 @@ builder.Services.AddSwaggerGen(options =>
     //add custom operation filter which sets default values
     options.OperationFilter<SwaggerDefaultValues>();
 
+    //Connected attribute [SwaggerIgnore] to hide requested fields from SwaggerUI
+    options.SchemaFilter<SwaggerSkipPropertyFilter>();
+
     //connect service of display XML comments in SwaggerUI
     var basePath = AppContext.BaseDirectory;
     options.IncludeXmlComments(Path.Combine(basePath, "ProductItemApi.xml"));
@@ -48,15 +51,12 @@ builder.Services.AddApiVersioning().AddApiExplorer(configure =>
 {
     configure.GroupNameFormat = "'v'VVV";
     configure.SubstituteApiVersionInUrl = true;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(configure =>
-{
-    //Connected attribute [SwaggerIgnore] to hide requested fields from SwaggerUI
-    configure.SchemaFilter<SwaggerSkipPropertyFilter>();
-});
 
+//add CORS policy for permission treat request from other protocols and ports
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(

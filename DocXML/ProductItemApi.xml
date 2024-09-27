@@ -4,7 +4,7 @@
         <name>AspNetWeb_Product</name>
     </assembly>
     <members>
-        <member name="M:AspNetWeb_Product.Controllers.ProductItemController.getAllItemsDto">
+        <member name="M:AspNetWeb_Product.Controllers.EducationController.getAllItemsDto">
             <summary>
 				request to get entities ProductItemDto
 			</summary><returns>Ok(...) or BadRequest(...)</returns><example>
@@ -15,6 +15,16 @@
 			</example><remark code="200">Successful fullfilment</remark><exception cref="T:AspNetWeb_NLayer.BLL.Infrastructure.ProductItemException">
 				appear if in db records is absent for ProductItem
 			</exception>
+        </member>
+        <member name="M:AspNetWeb_Product.Controllers.EducationController.getProductrderDto(System.String,AspNetWeb_Product.Models.ClientProperty)">
+            <summary>
+				ProductOrderDto is result of bussines model and proposal for client
+			</summary>
+        </member>
+        <member name="M:AspNetWeb_Product.Controllers.EducationController.AddProductOrder(AspNetWeb_NLayer.DAL.Entities.ProductOrder)">
+            <summary>
+				ProductOrder is entity for admin to registrate new user
+			</summary>
         </member>
     </members>
 </doc>

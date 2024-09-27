@@ -3,7 +3,7 @@
     <members name="models">
 		<ProductItemOrder>
 			<summary>
-				ProductItemOrder is result of bussines model 
+				ProductOrderDto is result of bussines model and proposal for client
 			</summary>
 		</ProductItemOrder>
     </members>

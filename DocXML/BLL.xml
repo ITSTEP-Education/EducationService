@@ -4,9 +4,9 @@
         <name>AspNetWeb_NLayer.BLL</name>
     </assembly>
     <members>
-        <member name="T:AspNetWeb_NLayer.BLL.DTO.ProductItemOrder">
+        <member name="T:AspNetWeb_NLayer.BLL.DTO.ProductOrderDto">
             <summary>
-				ProductItemOrder is result of bussines model 
+				ProductOrderDto is result of bussines model and proposal for client
 			</summary>
         </member>
     </members>

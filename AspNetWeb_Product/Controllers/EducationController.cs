@@ -1,4 +1,5 @@
-﻿using AspNetWeb_NLayer.BLL.BussinesModels;
+﻿using Asp.Versioning;
+using AspNetWeb_NLayer.BLL.BussinesModels;
 using AspNetWeb_NLayer.BLL.DTO;
 using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Interfaces;
@@ -7,11 +8,14 @@ using AspNetWeb_Product.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
+using System.Net;
 
 namespace AspNetWeb_Product.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class EducationController : ControllerBase
     {
         private readonly IProductService productServ;
@@ -25,8 +29,10 @@ namespace AspNetWeb_Product.Controllers
             this.logger = logger;
         }
 
-        //HttpRequest for intaraction with ProductItems
+        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/GetAllItemsDto/*'/>
+        [MapToApiVersion("1.0")]
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
+        [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), (int)HttpStatusCode.OK)]
         public ActionResult<IEnumerable<ProductItemDto>> getAllItemsDto()
         {
             try
@@ -39,6 +45,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("all-productitems", Name = "GetAllItems")]
         public ActionResult<IEnumerable<ProductItem>> getAllItems() 
         {
@@ -52,6 +59,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("1.0")]
         [HttpGet("product-item", Name = "GetProductItem")]
         public ActionResult<ProductItem> getProductItem([FromQuery][Required] string name)
         {
@@ -69,7 +77,8 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        //HttpRequest for intaraction with ProductOrder
+        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrderDto/*'/>
+        [MapToApiVersion("2.0")]
         [HttpPost("product-order-dto", Name = "GetProductOrderDto")]
         public ActionResult<ProductOrderDto> getProductrderDto([FromQuery][Required] string name, 
             [FromBody] ClientProperty clientProps)
@@ -88,6 +97,8 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrder/*'/>
+        [MapToApiVersion("2.0")]
         [HttpPost("product-order", Name = "AddProductOrder")]
         public IActionResult AddProductOrder([FromBody] ProductOrder productOrder)
         {
@@ -108,6 +119,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("2.0")]
         [HttpGet("product-orders", Name = "GetProductOrders")]
         public ActionResult<IEnumerable<ProductOrder>> getAllProductOrders()
         {
@@ -125,6 +137,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
+        [MapToApiVersion("2.0")]
         [HttpGet("product-order", Name = "GetProductOrder")]
         public ActionResult<ProductOrder> getProductOrder([FromQuery][Required] string guid)
         {

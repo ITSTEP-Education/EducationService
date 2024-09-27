@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>C:\Users\student\Desktop\polxs_wp31\AspNet\Projects\AspNetWeb_NLayer\DocXML\ProductItemApi.xml</DocumentationFile>
+    <DocumentationFile>A:\OneDrive - ITSTEP\Asp.Net\Projects\ITSTEPEducation\EducationService\DocXML\ProductItemApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
