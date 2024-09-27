@@ -15,7 +15,7 @@ namespace AspNetWeb_NLayer.BLL.Interfaces
 
         ProductItemDto getProductDto(string? name);
 
-        ProductItemOrder getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps);
+        ProductOrderDto getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps);
 
         void Dispose();
     }

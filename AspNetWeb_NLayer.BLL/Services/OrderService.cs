@@ -1,11 +1,6 @@
 ﻿using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
@@ -18,12 +13,16 @@ namespace AspNetWeb_NLayer.BLL.Services
             this.db = db;
         }
 
-        public void addProductOrerGuidDate(ProductOrder productOrder)
+        public void addProductOrderGuidDate(ProductOrder productOrder)
         {
             if (productOrder == null) throw new ArgumentNullException(nameof(productOrder.name));
 
             productOrder.guid = Guid.NewGuid().ToString();
-            productOrder.dateTime = DateTime.Now;
+
+            bool flag = DateTime.TryParse(DateTime.Now.ToString("g"), out DateTime result);
+            if (!flag) throw new Exception("DateTime is null");
+
+            productOrder.dateTime = result;
 
             db.productOrders.addProduct(productOrder);
         }

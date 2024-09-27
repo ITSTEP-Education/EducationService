@@ -1,7 +1,7 @@
 ﻿
 namespace AspNetWeb_NLayer.BLL.DTO
 {
-    public class ProductItemOrder
+    public class ProductOrderDto
     {
         public string name { get; set; } = null!;
         public string typeEngeeniring { get; set; } = null!;

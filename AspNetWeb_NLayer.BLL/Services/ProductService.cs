@@ -5,7 +5,6 @@ using AspNetWeb_NLayer.BLL.Infrastructure;
 using AutoMapper;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_NLayer.BLL.BussinesModels;
-using AspNetWeb_NLayer.DAL.Repositories;
 
 namespace AspNetWeb_NLayer.BLL.Services
 {
@@ -37,12 +36,12 @@ namespace AspNetWeb_NLayer.BLL.Services
             return mapper.Map<IEnumerable<ProductItem>, IEnumerable<ProductItemDto>>(products);
         }
 
-        public ProductItemOrder getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps)
+        public ProductOrderDto getProductOrder(string? name, ClientTimeProperty cltTimeProps, ClientPayProperty cltPayProps)
         {
             var productItem = getProductItem(name);
 
-            IMapper mapper = new MapperConfiguration(c => c.CreateMap<ProductItem, ProductItemOrder>()).CreateMapper();
-            var productOrder = mapper.Map<ProductItem, ProductItemOrder>(productItem);
+            IMapper mapper = new MapperConfiguration(c => c.CreateMap<ProductItem, DTO.ProductOrderDto>()).CreateMapper();
+            var productOrder = mapper.Map<ProductItem, DTO.ProductOrderDto>(productItem);
 
             cltTimeProps.EngineerType = productItem.typeEngeeniring;
             productOrder.timeStudy = new EducationTime(cltTimeProps).getTimeEducation(productItem.durationMonth);

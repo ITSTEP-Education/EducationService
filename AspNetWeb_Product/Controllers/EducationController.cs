@@ -5,20 +5,19 @@ using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Data.Common;
 
 namespace AspNetWeb_Product.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductItemController : ControllerBase
+    public class EducationController : ControllerBase
     {
         private readonly IProductService productServ;
         private readonly IOrderService orderServ;
-        private readonly ILogger<ProductItemController> logger;
+        private readonly ILogger<EducationController> logger;
 
-        public ProductItemController(IProductService productServ, IOrderService orderService, ILogger<ProductItemController> logger)
+        public EducationController(IProductService productServ, IOrderService orderService, ILogger<EducationController> logger)
         {
             this.productServ = productServ;
             this.orderServ = orderService;
@@ -69,7 +68,7 @@ namespace AspNetWeb_Product.Controllers
         }
 
         [HttpPost("product-order-dto", Name = "GetProductOrder")]
-        public ActionResult<ProductItemOrder> getProductrder([FromQuery] string name, 
+        public ActionResult<ProductOrderDto> getProductrder([FromQuery] string name, 
             [FromBody] ClientProperty clientProps)
         {
             try
@@ -86,18 +85,12 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        [HttpGet("check", Name = "GetReponce")]
-        public ActionResult<string> getResponce()
-        {
-            return Ok("ProductItem");
-        }
-
         [HttpPost("product-order", Name = "AddProductOrder")]
         public IActionResult AddProductOrder([FromBody] ProductOrder productOrder)
         {
             try
             {
-                orderServ.addProductOrerGuidDate(productOrder);
+                orderServ.addProductOrderGuidDate(productOrder);
                 return Ok(productOrder.guid);
             }
             catch (ArgumentNullException ex)
