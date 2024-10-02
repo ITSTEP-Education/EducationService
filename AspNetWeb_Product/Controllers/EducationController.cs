@@ -79,7 +79,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrderDto/*'/>
+        /////<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrderDto/*'/>
         [MapToApiVersion("2.0")]
         [HttpPost("product-order-dto", Name = "GetProductOrderDto")]
         public ActionResult<ProductOrderDto> getProductrderDto([FromQuery][Required] string name, 
@@ -99,7 +99,7 @@ namespace AspNetWeb_Product.Controllers
             }
         }
 
-        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrder/*'/>
+        /////<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/ProductOrder/*'/>
         [MapToApiVersion("2.0")]
         [HttpPost("product-order", Name = "AddProductOrder")]
         public IActionResult AddProductOrder([FromBody] ProductOrder productOrder)
