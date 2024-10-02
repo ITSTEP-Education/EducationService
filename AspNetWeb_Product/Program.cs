@@ -34,8 +34,8 @@ builder.Services.AddSwaggerGen(options =>
 
     //connect service of display XML comments in SwaggerUI
     var basePath = AppContext.BaseDirectory;
-    options.IncludeXmlComments(Path.Combine(basePath, "ProductItemApi.xml"));
-    options.IncludeXmlComments(Path.Combine(basePath, "BLL.xml"));
+    //options.IncludeXmlComments(Path.Combine(basePath, "ProductItemApi.xml"));
+    //options.IncludeXmlComments(Path.Combine(basePath, "BLL.xml"));
 });
 
 //Add services of versioning in Swagger
@@ -59,13 +59,12 @@ builder.Services.AddEndpointsApiExplorer();
 //add CORS policy for permission treat request from other protocols and ports
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        configurePolicy: policy =>
-        {
-            policy.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
@@ -97,9 +96,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
-app.UseCors();
+app.UseRouting();
+
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

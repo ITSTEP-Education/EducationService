@@ -5,6 +5,7 @@ using AspNetWeb_NLayer.BLL.Infrastructure;
 using AspNetWeb_NLayer.BLL.Interfaces;
 using AspNetWeb_NLayer.DAL.Entities;
 using AspNetWeb_Product.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
@@ -12,6 +13,7 @@ using System.Net;
 
 namespace AspNetWeb_Product.Controllers
 {
+    [EnableCors("AllowAll")]
     [ApiController]
     [ApiVersion("1.0")]
     [ApiVersion("2.0")]
@@ -29,7 +31,7 @@ namespace AspNetWeb_Product.Controllers
             this.logger = logger;
         }
 
-        ///<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/GetAllItemsDto/*'/>
+        /////<include file='../DocXML/ProductItemDocumentation.xml' path='docs/members[@name="controller"]/GetAllItemsDto/*'/>
         [MapToApiVersion("1.0")]
         [HttpGet("all-productitems-dto", Name = "GetAllItemsDto")]
         [ProducesResponseType(typeof(IEnumerable<ProductItemDto>), (int)HttpStatusCode.OK)]
